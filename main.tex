@@ -13,6 +13,7 @@
 
 % ========== Package Configuration ==========
 \usepackage{float}
+\usepackage{placeins}  % for \FloatBarrier
 \usepackage{txfonts}
 \usepackage[utf8]{inputenc}
 \usepackage{indentfirst}
@@ -24,6 +25,8 @@
 \usepackage{algpseudocode}
 \usepackage{enumitem}
 \usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
 
 % ========== Page Layout Optimization ==========
 \setlength{\parskip}{0.2em}
@@ -35,6 +38,10 @@
 \setlength{\belowcaptionskip}{2pt}
 \setlength{\abovedisplayskip}{6pt}
 \setlength{\belowdisplayskip}{6pt}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.70}
+\renewcommand{\textfraction}{0.10}
+\renewcommand{\floatpagefraction}{0.80}
 
 \graphicspath{{figures/}}
 

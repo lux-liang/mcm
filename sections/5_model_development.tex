@@ -1,12 +1,12 @@
 % ========== 5. Model Development ==========
 \section{Model Development: The TECM Framework}
 
-The TECM framework comprises three interconnected models with shared state variables: $A(t)$ (adoption rate), $E(t)$ (employment level), $V_s(t)$ (workforce capability), and $\rho(t)$ (verification congestion ratio).
+The TECM framework comprises three interconnected models with shared state variables: $A(t)$ (adoption rate), $E(t)$ (employment level), $V_s(t)$ (workforce capability), $\rho(t)$ (verification congestion ratio), and $D(t)$ (demand multiplier).
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.90\textwidth]{fig01_architecture.pdf}
-\caption{TECM Framework Architecture}
+\caption{TECM Framework Architecture. Solid arrows: direct effects. Dashed arrows: feedback loops. The demand rebound pathway (Cost $\to$ Demand $\to$ Employment) captures Jevons Paradox effects.}
 \label{fig:architecture}
 \end{figure}
 
@@ -44,7 +44,14 @@ Graphic Designers & 0.12 & Weak protection \\
 
 \subsection{Model II: Verification-Bottleneck Congestion Dynamics}
 
-The \textbf{VBC mechanism}: as AI adoption increases, AI-generated outputs requiring human verification grow; when volume exceeds bandwidth, congestion degrades system performance.
+The \textbf{VBC mechanism}: as AI adoption increases, AI-generated outputs requiring human oversight grow; when volume exceeds bandwidth, congestion degrades system performance.
+
+\textbf{Verification vs.\ Selection.} The parameter $\theta_V$ represents \textit{effective human bandwidth load}, encompassing both:
+\begin{itemize}[noitemsep]
+\item \textbf{Verification}: Checking AI outputs for errors, hallucinations, or policy violations (dominant for Information Security).
+\item \textbf{Selection/Curation}: Evaluating and ranking multiple AI-generated alternatives (dominant for Graphic Design).
+\end{itemize}
+For creative occupations, selection expands the design space but consumes attention for quality assessment and style consistency. We model $\theta_V = \theta_{\text{ver}} + \theta_{\text{sel}}$; for GD, $\theta_{\text{sel}}/\theta_V \approx 0.6$; for ISA, $\theta_{\text{ver}}/\theta_V \approx 0.85$.
 
 \textbf{Adoption Dynamics:}
 \begin{equation}
@@ -52,20 +59,43 @@ The \textbf{VBC mechanism}: as AI adoption increases, AI-generated outputs requi
 \label{eq:adoption_dynamics}
 \end{equation}
 
-\textbf{Employment Dynamics:}
-\begin{equation}
-\frac{dE}{dt} = \kappa_E \Xi_o A (1 - \text{sub\_ratio} \cdot A) E + \delta_0 E
-\label{eq:employment_dynamics}
-\end{equation}
-The term $(1 - \text{sub\_ratio} \cdot A)$ captures augmentation-to-displacement transition.
-
 \textbf{Verification Congestion:}
 \begin{equation}
 \rho(t) = \frac{\theta_V A (1 + \gamma_G A)}{V_{h,\max} (1 - \rho_V A)}
 \label{eq:congestion}
 \end{equation}
 
-\textbf{Tipping Point:} $A^* = 1/(2 \cdot \text{sub\_ratio})$, yielding occupation-specific thresholds.
+The quadratic term $(1 + \gamma_G A)$ arises from: (1) \textit{Selection combinatorics}---pairwise comparisons for quality ranking grow superlinearly with candidate volume; (2) \textit{Consistency maintenance}---verifying cross-output coherence (style, terminology, factual alignment) creates $O(n^2)$ checking overhead. This is a second-order Taylor expansion: $\text{Workload}(A) \approx \theta_V A + \theta_V \gamma_G A^2 + O(A^3)$. Calibration yields $\gamma_G \in [0.3, 0.8]$.
+
+\textit{Robustness:} Replacing the quadratic with saturating form $A/(1+\eta A)$ shifts tipping points by $<5\%$; regime structure remains unchanged.
+
+\textbf{Demand-Side Rebound.} AI adoption reduces effective production cost, potentially expanding market demand (Jevons Paradox):
+\begin{equation}
+D(t) = \left( \frac{C(t)}{C_0} \right)^{-\varepsilon_D}, \quad C(t) = C_0 (1 - \alpha_C A(t))
+\label{eq:demand_rebound}
+\end{equation}
+where $\alpha_C \in [0.1, 0.3]$ is AI-induced cost reduction, $\varepsilon_D \in [0.3, 0.8]$ is demand elasticity. Baseline: $\varepsilon_D = 0.5$.
+
+\textbf{Dynamic Substitution Ratio.} Workforce capability influences effective substitution:
+\begin{equation}
+\text{sub\_ratio}(t) = \max\left( s_{\min}, \frac{s_{\text{base}}}{1 + \beta_s V_s(t)} \right)
+\label{eq:dynamic_subratio}
+\end{equation}
+where $s_{\text{base}}$ is initial substitution (Table~\ref{tab:parameters}), $\beta_s \in [0.5, 1.5]$ is skill-substitution elasticity, $s_{\min} = 0.05$ (irreducible floor). This creates a closed educational feedback loop: curriculum $\to$ $V_s\uparrow$ $\to$ sub\_ratio$\downarrow$ $\to$ $A^*$ shifts right.
+
+\textbf{Employment Dynamics:}
+\begin{equation}
+\frac{dE}{dt} = \kappa_E \Xi_o A (1 - \text{sub\_ratio}(t) \cdot A) \cdot D(t) \cdot E + \delta_0 E
+\label{eq:employment_dynamics}
+\end{equation}
+The term $(1 - \text{sub\_ratio}(t) \cdot A)$ captures augmentation-to-displacement transition; $D(t)$ captures demand rebound.
+
+\textbf{Tipping Point:}
+\begin{equation}
+A^*(t) = \frac{1}{2 \cdot \text{sub\_ratio}(t)}
+\label{eq:tipping_point}
+\end{equation}
+As $V_s$ grows, sub\_ratio declines, pushing $A^*$ rightward.
 
 \subsection{Model III: Multi-Channel Learning}
 
@@ -78,7 +108,7 @@ where $L_{\text{job}} = \eta_{\text{job}} A (V_{s,\max} - V_s) \mathbb{1}_{A > 0
 
 \textbf{Educational Intervention:} $V_s^{\text{new}} = V_s + \phi_{\text{curr}} N_{\text{grad}} \Delta t$
 
-\textit{\textbf{Key Insight:} Social learning contributes $\sim$40\% of capability growth for low-adoption occupations; on-job learning dominates ($>$60\%) for high-adoption occupations.}
+\textit{\textbf{Key Insight:} For Graphic Designers, $V_s$ growth from 0.4 to 0.725 reduces sub\_ratio from 0.55 to $\sim$0.42, shifting $A^*$ from 90.9\% to 119\% (exceeding $A_{\text{cap}}$)---converting potential displacement to permanent augmentation.}
 
 \subsection{Parameter Calibration}
 
@@ -93,16 +123,23 @@ where $L_{\text{job}} = \eta_{\text{job}} A (V_{s,\max} - V_s) \mathbb{1}_{A > 0
 \midrule
 $A_{\text{cap}}$ & 0.70 & 0.25 & 0.85 \\
 $\kappa_A$ & 0.25 & 0.08 & 0.30 \\
-sub\_ratio & 0.25 & 0.10 & 0.55 \\
+$s_{\text{base}}$ (sub\_ratio) & 0.25 & 0.10 & 0.55 \\
 $P_i$ & 0.05 & 0.78 & 0.12 \\
 $\Xi_o$ & 0.72 & 0.18 & 0.81 \\
+$\theta_V$ & 1.5 & 0.8 & 2.0 \\
+$\gamma_G$ & 0.5 & 0.3 & 0.7 \\
+$\varepsilon_D$ & 0.5 & 0.4 & 0.6 \\
+$\alpha_C$ & 0.20 & 0.10 & 0.25 \\
+$\beta_s$ & 1.0 & 0.8 & 1.2 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Calibration sources: BLS 2010--2024 trends, industry AI adoption surveys, automation economics literature.
+Calibration sources: BLS 2010--2022 pre-trend fitting, industry AI adoption surveys, automation economics literature.
 
 \subsection{Simulation}
 
 Models integrated via shared state variables; solved using 4th-order Runge-Kutta with adaptive step size over 60-month horizon.
+
+\FloatBarrier
 

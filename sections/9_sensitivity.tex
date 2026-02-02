@@ -3,24 +3,34 @@
 
 \subsection{Methodology}
 
-We employ Partial Rank Correlation Coefficient (PRCC) analysis with Latin Hypercube Sampling ($N = 1000$) to assess parameter influence and model robustness.
+We employ Partial Rank Correlation Coefficient (PRCC) analysis with Latin Hypercube Sampling (LHS) to assess global parameter sensitivity. PRCC is appropriate because: (1) it captures monotonic relationships under rank transformation, controlling for correlations among inputs; (2) it remains robust when output distributions are non-normal; (3) it quantifies each parameter's unique contribution after removing linear effects of others.
+
+\textbf{Parameter Set and Perturbation.} We perturb $p = 8$ parameters around occupation-specific calibrated baselines (Table~\ref{tab:parameters}). Each parameter $\theta_j$ is sampled from $\theta_j^{\text{base}} \times (1 + \epsilon_j)$, where $\epsilon_j \sim \mathcal{U}(-r_j, r_j)$ with $r_j$ denoting the perturbation half-range. LHS ensures stratified coverage of the 8-dimensional input space with $N=1000$ samples, improving variance estimation over simple Monte Carlo.
+
+\textbf{Output Metrics.} For each sample, we record: (i) terminal employment ratio $E(60)/E(0)$, (ii) maximum congestion $\rho_{\max}$, (iii) time to reach 50\% of adoption ceiling $t_{50}$. PRCC is computed separately for each occupation-output pair.
 
 \begin{table}[H]
 \centering
-\caption{Parameter Ranges for Sensitivity Analysis}
+\caption{Parameter Perturbation Ranges for Sensitivity Analysis}
+\label{tab:sens_params}
 \small
-\begin{tabular}{llcc}
+\begin{tabular}{llc}
 \toprule
-\textbf{Parameter} & \textbf{Description} & \textbf{Baseline} & \textbf{Range} \\
+\textbf{Parameter} & \textbf{Description} & \textbf{Perturbation} \\
 \midrule
-$A_{\text{cap}}$ & Adoption ceiling & 0.70--0.85 & $\pm 20\%$ \\
-sub\_ratio & Substitution ratio & 0.10--0.55 & $\pm 30\%$ \\
-$\kappa_A$ & Adoption rate & 0.08--0.30 & $\pm 40\%$ \\
-$\kappa_E$ & Employment elasticity & 0.02--0.08 & $\pm 50\%$ \\
-$\theta_V$ & Verification load & 0.8--2.0 & $\pm 30\%$ \\
+$A_{\text{cap}}$ & Adoption ceiling & $\pm 20\%$ \\
+sub\_ratio$(t)$ & Substitution ratio & $\pm 30\%$ \\
+$\kappa_A$ & Adoption rate & $\pm 40\%$ \\
+$\kappa_E$ & Employment elasticity & $\pm 50\%$ \\
+$\theta_V$ & Effective verification load & $\pm 30\%$ \\
+$\gamma_G$ & Congestion superlinearity & $\pm 25\%$ \\
+$\varepsilon_D$ & Demand elasticity & $\pm 40\%$ \\
+$\beta_s$ & Skill-substitution elasticity & $\pm 30\%$ \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\textit{Note: Baseline values are occupation-specific; see Table~\ref{tab:parameters}. Perturbations are multiplicative around each occupation's calibrated baseline.}
 
 \subsection{Global Sensitivity Results}
 
@@ -31,9 +41,9 @@ $\theta_V$ & Verification load & 0.8--2.0 & $\pm 30\%$ \\
 \label{fig:sensitivity_heatmap}
 \end{figure}
 
-\textbf{High-Sensitivity Parameters} ($|PRCC| > 0.7$): $A_{\text{cap}}$ (0.95 for adoption), sub\_ratio (-0.82 for employment), $\kappa_A$ (0.82), $\kappa_E$ (0.78).
+\textbf{High-Sensitivity Parameters} ($|PRCC| > 0.7$): $A_{\text{cap}}$ (0.95 for adoption), sub\_ratio (-0.82 for employment), $\kappa_A$ (0.82), $\kappa_E$ (0.78), $\varepsilon_D$ (0.68 for employment via demand rebound).
 
-\textbf{Low-Sensitivity Parameters}: $p_{\text{base}}$, $\delta_0$ --- limited impact due to AI-driven dynamics dominance.
+\textbf{Low-Sensitivity Parameters}: $p_{\text{base}}$, $\delta_0$---limited impact due to AI-driven dynamics dominance.
 
 \subsection{One-at-a-Time Sensitivity}
 
@@ -45,17 +55,20 @@ $\theta_V$ & Verification load & 0.8--2.0 & $\pm 30\%$ \\
 \toprule
 \textbf{Scenario} & \textbf{Info Sec} & \textbf{Elec} & \textbf{Design} \\
 \midrule
-$A_{\text{cap}}$ -20\% & +14.2\% & +2.5\% & +3.8\% \\
+$A_{\text{cap}}$ $-20\%$ & +14.2\% & +2.5\% & +3.8\% \\
 Baseline & +17.5\% & +2.9\% & +0.2\% \\
-$A_{\text{cap}}$ +20\% & +19.8\% & +3.2\% & -4.5\% \\
+$A_{\text{cap}}$ $+20\%$ & +19.8\% & +3.2\% & $-4.5\%$ \\
 \midrule
-sub\_ratio -30\% & +21.2\% & +3.4\% & +8.5\% \\
-sub\_ratio +30\% & +12.8\% & +2.4\% & -9.2\% \\
+sub\_ratio $-30\%$ & +21.2\% & +3.4\% & +8.5\% \\
+sub\_ratio $+30\%$ & +12.8\% & +2.4\% & $-9.2\%$ \\
+\midrule
+$\varepsilon_D = 0.3$ (low rebound) & +15.8\% & +2.6\% & $-1.2\%$ \\
+$\varepsilon_D = 0.8$ (high rebound) & +19.1\% & +3.1\% & +2.8\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\textit{\textbf{Key Insight:} Graphic Designers show greatest sensitivity to $A_{\text{cap}}$: a 20\% increase shifts employment from +0.2\% to -4.5\%, crossing into displacement.}
+\textit{\textbf{Key Insight:} Graphic Designers show greatest sensitivity to both $A_{\text{cap}}$ and $\varepsilon_D$: a 20\% ceiling increase shifts employment from +0.2\% to $-4.5\%$; conversely, high demand elasticity ($\varepsilon_D = 0.8$) restores positive growth via Jevons effect.}
 
 \subsection{Parameter Uncertainty}
 
@@ -75,13 +88,15 @@ Graphic Designers & 1.002 & [0.92, 1.08] \\
 \end{tabular}
 \end{table}
 
-Graphic Designers exhibit the widest CI, reflecting uncertainty that could push outcomes to +8\% or -8\%.
+Graphic Designers exhibit the widest CI, reflecting uncertainty that could push outcomes from +8\% to $-8\%$.
 
 \subsection{Critical Thresholds}
 
 \begin{itemize}[noitemsep]
-\item \textbf{Graphic Designers displacement}: sub\_ratio $> 0.60$
+\item \textbf{Graphic Designers displacement}: sub\_ratio $> 0.60$ OR $\varepsilon_D < 0.25$
 \item \textbf{Electricians digital transformation}: $A_{\text{cap}} > 0.40$
 \item \textbf{Info Security saturation}: $\kappa_A > 0.50$
 \end{itemize}
+
+\FloatBarrier
 
