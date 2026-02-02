@@ -1,0 +1,108 @@
+% ========== 5. Model Development ==========
+\section{Model Development: The TECM Framework}
+
+The TECM framework comprises three interconnected models with shared state variables: $A(t)$ (adoption rate), $E(t)$ (employment level), $V_s(t)$ (workforce capability), and $\rho(t)$ (verification congestion ratio).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.90\textwidth]{fig01_architecture.pdf}
+\caption{TECM Framework Architecture}
+\label{fig:architecture}
+\end{figure}
+
+\subsection{Model I: Task Decomposition and Risk Assessment}
+
+Each occupation $o$ is decomposed into $K$ weighted task units: $o = \{(\tau_k, w_k, \xi_k, p_k)\}_{k=1}^K$, where $\tau_k$ is task descriptor, $w_k$ is importance weight ($\sum_k w_k = 1$), $\xi_k \in [0,1]$ is AI exposure score, and $p_k \in \{0,1\}$ is physical requirement indicator.
+
+\textbf{Composite Exposure Index:}
+\begin{equation}
+\Xi_o = \sum_{k=1}^K w_k \cdot \xi_k \cdot (1 - \alpha_p \cdot p_k)
+\label{eq:exposure_index}
+\end{equation}
+The term $(1 - \alpha_p \cdot p_k)$ implements the \textbf{Physical Protection Effect} ($\alpha_p = 0.7$).
+
+\textbf{Physical Protection Index:}
+\begin{equation}
+P_i = \frac{\sum_{k=1}^K w_k \cdot p_k \cdot (1 - \xi_k)}{\sum_{k=1}^K w_k}
+\end{equation}
+
+\begin{table}[H]
+\centering
+\caption{Physical Protection Index by Occupation}
+\label{tab:physical_protection}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Occupation} & \textbf{$P_i$} & \textbf{Interpretation} \\
+\midrule
+Information Security Analysts & 0.05 & Minimal protection \\
+Electricians & 0.78 & Strong protection \\
+Graphic Designers & 0.12 & Weak protection \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Model II: Verification-Bottleneck Congestion Dynamics}
+
+The \textbf{VBC mechanism}: as AI adoption increases, AI-generated outputs requiring human verification grow; when volume exceeds bandwidth, congestion degrades system performance.
+
+\textbf{Adoption Dynamics:}
+\begin{equation}
+\frac{dA}{dt} = \kappa_A A \left(1 - \frac{A}{A_{\text{cap}}}\right) - \lambda_G A \max(\rho - \rho_{\text{thresh}}, 0) + A_{\text{digital}}
+\label{eq:adoption_dynamics}
+\end{equation}
+
+\textbf{Employment Dynamics:}
+\begin{equation}
+\frac{dE}{dt} = \kappa_E \Xi_o A (1 - \text{sub\_ratio} \cdot A) E + \delta_0 E
+\label{eq:employment_dynamics}
+\end{equation}
+The term $(1 - \text{sub\_ratio} \cdot A)$ captures augmentation-to-displacement transition.
+
+\textbf{Verification Congestion:}
+\begin{equation}
+\rho(t) = \frac{\theta_V A (1 + \gamma_G A)}{V_{h,\max} (1 - \rho_V A)}
+\label{eq:congestion}
+\end{equation}
+
+\textbf{Tipping Point:} $A^* = 1/(2 \cdot \text{sub\_ratio})$, yielding occupation-specific thresholds.
+
+\subsection{Model III: Multi-Channel Learning}
+
+Workforce capability evolves through three channels:
+\begin{equation}
+\frac{dV_s}{dt} = L_{\text{job}} + L_{\text{social}} + L_{\text{auto}} - \delta_V V_s
+\label{eq:capability_dynamics}
+\end{equation}
+where $L_{\text{job}} = \eta_{\text{job}} A (V_{s,\max} - V_s) \mathbb{1}_{A > 0.05}$ (on-job), $L_{\text{social}} = \eta_{\text{social}} A(1-A)\sqrt{V_s}$ (social, peaks at intermediate adoption), and $L_{\text{auto}} = \eta_{\text{auto}} V_s (1 - V_s/V_{s,\max})$ (autonomous).
+
+\textbf{Educational Intervention:} $V_s^{\text{new}} = V_s + \phi_{\text{curr}} N_{\text{grad}} \Delta t$
+
+\textit{\textbf{Key Insight:} Social learning contributes $\sim$40\% of capability growth for low-adoption occupations; on-job learning dominates ($>$60\%) for high-adoption occupations.}
+
+\subsection{Parameter Calibration}
+
+\begin{table}[H]
+\centering
+\caption{Calibrated Parameters by Occupation}
+\label{tab:parameters}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Parameter} & \textbf{Info Sec} & \textbf{Elec} & \textbf{Design} \\
+\midrule
+$A_{\text{cap}}$ & 0.70 & 0.25 & 0.85 \\
+$\kappa_A$ & 0.25 & 0.08 & 0.30 \\
+sub\_ratio & 0.25 & 0.10 & 0.55 \\
+$P_i$ & 0.05 & 0.78 & 0.12 \\
+$\Xi_o$ & 0.72 & 0.18 & 0.81 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Calibration sources: BLS 2010--2024 trends, industry AI adoption surveys, automation economics literature.
+
+\subsection{Simulation}
+
+Models integrated via shared state variables; solved using 4th-order Runge-Kutta with adaptive step size over 60-month horizon.
+

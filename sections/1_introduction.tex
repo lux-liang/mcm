@@ -1,0 +1,65 @@
+% ========== 1. Introduction ==========
+\section{Introduction}
+
+\subsection{Problem Background}
+
+The emergence of Generative Artificial Intelligence (Gen-AI) systems---exemplified by large language models (LLMs), text-to-image generators, and code assistants---has fundamentally altered the productivity landscape across knowledge work, creative industries, and technical trades. Unlike previous automation waves that primarily targeted routine manual tasks, Gen-AI demonstrates unprecedented capability in domains once considered exclusively human: creative ideation, complex reasoning, and nuanced communication \cite{eloundou2023gpts}.
+
+This technological shift presents what we term the \textbf{Tipping Point Paradox}: AI tools designed to augment human productivity may, beyond certain adoption thresholds, trigger employment displacement through verification bottlenecks, skill commoditization, and market saturation effects. Understanding where these tipping points lie---and how they vary across occupational contexts---is critical for educational institutions navigating curriculum design, enrollment planning, and workforce preparation.
+
+\subsection{Research Motivation}
+
+The 2026 ICM Problem F challenges us to examine Gen-AI's differential impacts across three occupational archetypes:
+\begin{itemize}[noitemsep]
+    \item \textbf{STEM Career}: Requiring a 4-year university degree in sciences, technology, engineering, or mathematics
+    \item \textbf{Trade Career}: Requiring trade school certification and/or apprenticeship
+    \item \textbf{Arts Career}: Requiring specialized arts education, conservatory training, or cultural center instruction
+\end{itemize}
+
+Current approaches to AI-employment analysis suffer from three fundamental limitations:
+\begin{enumerate}[noitemsep]
+    \item \textbf{Occupation-Level Aggregation}: Most studies treat occupations as monolithic units, ignoring within-occupation heterogeneity in task composition
+    \item \textbf{Static Adoption Models}: Linear projections fail to capture feedback loops between adoption, congestion, and capability evolution
+    \item \textbf{Disconnected Educational Linkage}: Employment forecasts rarely translate into actionable curriculum recommendations
+\end{enumerate}
+
+\subsection{Our Contribution: The TECM Framework}
+
+We develop the \textbf{\fullmodelname{} (\modelname{})} framework, which addresses these limitations through five core innovations:
+
+\begin{enumerate}[noitemsep]
+\item We propose a \textbf{task-granular decomposition} method that disaggregates each occupation into weighted task units with distinct AI susceptibility profiles, enabling within-occupation heterogeneity analysis (Sec.~5.2).
+
+\item We formalize the \textbf{Verification-Bottleneck Congestion (VBC)} mechanism, modeling how finite human verification capacity constrains sustainable AI adoption and can invert productivity gains at high adoption levels (Sec.~5.3; Fig.~3).
+
+\item We define the \textbf{Physical Protection Index} ($P_i$) to quantify how physical task requirements create structural resistance to AI displacement (Sec.~5.2; Table~2).
+
+\item We develop a \textbf{multi-channel learning model} capturing how workers acquire AI skills through job-based, social, and autonomous pathways with occupation-specific channel weights (Sec.~5.4).
+
+\item We establish an \textbf{educational feedback loop} providing direct, actionable mappings from model outputs to institution-specific enrollment and curriculum recommendations (Sec.~7).
+\end{enumerate}
+
+\subsection{Selected Occupations and Institutions}
+
+Based on representativeness, data availability, and policy relevance, we select:
+
+\begin{table}[H]
+\centering
+\caption{Selected Occupations and Partner Institutions}
+\label{tab:occupations}
+\begin{tabular}{llll}
+\toprule
+\textbf{Category} & \textbf{Occupation} & \textbf{SOC Code} & \textbf{Institution} \\
+\midrule
+STEM & Information Security Analysts & 15-1212 & Carnegie Mellon University \\
+Trade & Electricians & 47-2111 & Lansing Community College \\
+Arts & Graphic Designers & 27-1024 & Rhode Island School of Design \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These selections span the AI vulnerability spectrum: Information Security Analysts operate in high-AI-exposure digital environments, Electricians perform predominantly physical tasks with limited AI penetration, and Graphic Designers face direct competition from text-to-image generators while retaining creative direction advantages.
+
+\subsection{Paper Organization}
+
+The remainder of this paper is organized as follows: Section 2 presents our problem analysis and restatement. Section 3 details modeling assumptions and justifications. Section 4 describes data sources and preprocessing. Section 5 develops the three-model TECM framework. Section 6 presents simulation results and validation. Section 7 provides institution-specific recommendations. Section 8 discusses factors beyond employment metrics. Section 9 conducts sensitivity analysis. Section 10 evaluates strengths and limitations. Section 11 concludes with policy implications.

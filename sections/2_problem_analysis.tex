@@ -1,0 +1,27 @@
+% ========== 2. Problem Analysis ==========
+\section{Problem Analysis and Restatement}
+
+\subsection{Problem Decomposition}
+
+The ICM Problem F requires integration of technological forecasting, labor economics, and educational policy. We decompose into four sub-problems: (1) \textit{Task-level vulnerability assessment}---quantifying differential AI susceptibility; (2) \textit{Dynamic adoption modeling}---capturing feedback mechanisms; (3) \textit{Employment impact prediction}---net effects of augmentation vs.\ displacement; (4) \textit{Educational response design}---curriculum and enrollment adaptation.
+
+\subsection{Key Relationships}
+
+Critical causal pathways: Task Composition $\to$ AI Exposure $\to$ Adoption Rate $\to$ Employment Level, with Verification Bottleneck and Physical Protection as mediating factors. A feedback loop from Employment to Adoption (largely ignored in literature) captures how outcomes influence future adoption decisions.
+
+\subsection{Formal Problem Restatement}
+
+\noindent\textbf{Given:} Occupation $o$ with task decomposition $\{(\tau_k, w_k)\}_{k=1}^K$ ($\sum_k w_k = 1$); initial conditions $A_0, E_0, V_{s,0}$; institutional parameters: enrollment $N$, curriculum AI-intensity $\phi$.
+
+\noindent\textbf{Find:} Time evolution $\{A(t), E(t), V_s(t)\}$ for $t \in [0, T]$; tipping points $\{t^*: dE/dt|_{t^*} = 0, d^2E/dt^2|_{t^*} < 0\}$; optimal response $(\Delta N^*, \Delta \phi^*)$.
+
+\noindent\textbf{Subject to:} Physical task constraints $P_i \geq 0$; verification capacity $V_h \leq V_{h,\max}$; resource constraints $C_{\text{total}} \leq B$.
+
+\subsection{Scope}
+
+\textbf{Temporal}: 5-year horizon (60 months); validation against 2010--2024 BLS data. \textbf{Geographic}: U.S.\ labor market (O*NET, BLS, IPEDS). \textbf{Technological}: Gen-AI broadly (LLMs, text-to-image, code assistants, domain tools). \textbf{Occupational}: Three representative occupations across STEM-Trade-Arts spectrum.
+
+\subsection{Success Criteria}
+
+(1) \textit{Empirical validity}: MAPE $< 15\%$ vs.\ BLS trends; (2) \textit{Theoretical coherence}: economically interpretable mechanisms; (3) \textit{Policy actionability}: specific, implementable recommendations; (4) \textit{Generalizability}: framework extends beyond analyzed occupations.
+

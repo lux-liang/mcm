@@ -1,0 +1,84 @@
+\documentclass{mcmthesis}
+
+\mcmsetup{
+  tstyle=\color{black}\bfseries,
+  tcn = 2602828,
+  problem = F,
+  sheet = true,
+  titleinsheet = true,
+  keywordsinsheet = true,
+  titlepage = false,
+  abstract = true
+}
+
+% ========== Package Configuration ==========
+\usepackage{float}
+\usepackage{txfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+% ========== Page Layout Optimization ==========
+\setlength{\parskip}{0.2em}
+\setlist{nosep, leftmargin=1.5em}
+\setlength{\floatsep}{6pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{4pt}
+\setlength{\belowcaptionskip}{2pt}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+
+\graphicspath{{figures/}}
+
+% ========== Custom Commands ==========
+\newcommand{\modelname}{TECM}
+\newcommand{\fullmodelname}{Task--Exposure--Congestion--Market}
+\newcommand{\highlight}[1]{\textbf{#1}}
+\newcommand{\insight}[1]{\noindent\textit{\textbf{Key Insight:} #1}}
+
+% ========== Title ==========
+\title{The Tipping Point Paradox: When AI Augmentation Becomes Displacement\\
+\large A Task-Granular Framework for Career Evolution and Educational Adaptation}
+\date{}
+
+\begin{document}
+
+% ===== Summary Sheet =====
+\begin{abstract}
+The proliferation of Generative AI (Gen-AI) presents a paradox: technologies designed to augment human productivity may, beyond critical thresholds, trigger employment displacement. This paper develops the \textbf{\fullmodelname{} (\modelname{})} framework to resolve this paradox through task-level analysis of three archetypal occupations---\textit{Information Security Analysts} (STEM), \textit{Electricians} (Trade), and \textit{Graphic Designers} (Arts).
+
+Our framework introduces three interconnected models: \textbf{Model I} (Task Decomposition \& Risk Assessment) decomposes occupations into weighted task units using O*NET data, quantifying AI susceptibility through a novel Composite Exposure Index. \textbf{Model II} (Verification-Bottleneck Congestion Dynamics) formalizes how human verification capacity constrains AI adoption, revealing occupation-specific ``tipping points'' where marginal AI benefits turn negative. \textbf{Model III} (Educational Feedback Loop) demonstrates how targeted curriculum interventions can shift these tipping points rightward, extending the ``augmentation window.''
+
+Key findings include: (1) \textbf{Physical Protection Effect}---Electricians exhibit a robust ``protection period'' with adoption ceiling at 9.5\%, contrasting sharply with Graphic Designers' 85\% ceiling; (2) \textbf{Verification Congestion Paradox}---high AI adoption (>70\%) triggers congestion ratios exceeding 30\%, inverting productivity gains; (3) \textbf{Multi-Channel Learning}---workers acquire AI skills through job, social, and autonomous channels, with social learning contributing 40\% of capability growth for low-adoption occupations.
+
+Based on simulation results validated against BLS data (2010--2024), we provide differentiated recommendations for Carnegie Mellon University (maintain enrollment, frontier AI integration), Lansing Community College (expand 10.8\%, auxiliary tool approach), and Rhode Island School of Design (maintain enrollment, creative-AI workflow redesign). The framework generalizes to any occupation decomposable into task units, offering a principled approach to navigating the AI-employment nexus.
+
+\textbf{Keywords:} Task Decomposition; Verification Congestion; Tipping Point; Physical Protection; Educational Intervention; Gen-AI Adoption
+\end{abstract}
+
+\maketitle
+
+\input{sections/1_introduction}
+\input{sections/2_problem_analysis}
+\input{sections/3_assumptions}
+\input{sections/4_data_sources}
+\input{sections/5_model_development}
+\input{sections/6_results}
+\input{sections/7_recommendations}
+\input{sections/8_beyond_employment}
+\input{sections/9_sensitivity}
+\input{sections/10_strengths_limitations}
+\input{sections/11_conclusion}
+\newpage
+\input{sections/12_references}
+\input{sections/13_ai_report}
+
+\end{document}

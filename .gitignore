@@ -1,0 +1,45 @@
+# LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.nav
+*.snm
+*.vrb
+
+# Compiled output (keep PDFs in figures/)
+main.pdf
+
+# Editor files
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.so
+.env
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# Temporary files
+*.tmp
+*.temp
+*.bak

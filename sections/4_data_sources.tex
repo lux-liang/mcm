@@ -1,0 +1,69 @@
+% ========== 4. Data Sources ==========
+\section{Data Sources and Preprocessing}
+
+Our analysis integrates three authoritative data sources: O*NET for task structure, BLS OEWS for employment dynamics, and IPEDS for educational supply.
+
+\subsection{Primary Data Sources}
+
+\begin{table}[H]
+\centering
+\caption{Data Sources and Key Variables}
+\label{tab:data_sources}
+\small
+\begin{tabular}{p{0.18\textwidth}p{0.32\textwidth}p{0.38\textwidth}}
+\toprule
+\textbf{Source} & \textbf{Variables} & \textbf{Use in Model} \\
+\midrule
+O*NET 28.3 & 41 Work Activities, Work Context, 35 Skills & Task weights $w_k$, Physical Protection $P_i$, Capability $V_{s,0}$ \\
+BLS OEWS (2010--24) & Employment levels, wage estimates & Historical validation, calibration \\
+IPEDS (2023--24) & Program completions by institution & Supply estimation $S(t)$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Employment Trends}
+
+\begin{table}[H]
+\centering
+\caption{Historical Employment Data}
+\label{tab:bls_data}
+\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{SOC} & \textbf{Occupation} & \textbf{E(2010)} & \textbf{E(2024)} & \textbf{CAGR} \\
+\midrule
+15-1212 & Information Security Analysts & 67,100 & 175,350 & 7.1\% \\
+47-2111 & Electricians & 577,000 & 728,600 & 1.7\% \\
+27-1024 & Graphic Designers & 279,200 & 264,800 & -0.4\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Institutional Data}
+
+\begin{table}[H]
+\centering
+\caption{Partner Institution Program Completions}
+\label{tab:ipeds_data}
+\small
+\begin{tabular}{llcc}
+\toprule
+\textbf{Institution} & \textbf{CIP Code} & \textbf{Program} & \textbf{Completions} \\
+\midrule
+Carnegie Mellon & 11.1003 & Computer/Info Security & 287 \\
+Lansing CC & 46.0302 & Electrician & 156 \\
+RISD & 50.0409 & Graphic Design & 312 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Preprocessing}
+
+\textbf{O*NET}: Task importance scores normalized ($\sum w_k = 1$); physical tasks flagged via Work Context; AI exposure rated on 5-point scale based on cognitive complexity, data availability, and physical requirements.
+
+\textbf{BLS}: SOC code revisions (2010, 2018) reconciled via crosswalks; May reference period used consistently.
+
+\textbf{IPEDS}: CIP-SOC crosswalk applied; completions adjusted by graduation rates.
+
+\textbf{Quality Assurance}: Cross-validation against expert surveys; temporal consistency checks; outlier detection ($>$20\% YoY flagged); multiple imputation for missing data ($<$5\%).
+

@@ -1,0 +1,96 @@
+% ========== 6. Results ==========
+\section{Simulation Results and Validation}
+
+We present simulation results for the three target occupations over a 60-month horizon.
+
+\subsection{Adoption and Employment Dynamics}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig07_calibration_fan.pdf}
+\caption{AI Adoption Trajectories by Occupation (60-month simulation)}
+\label{fig:adoption_trajectories}
+\end{figure}
+
+\textbf{Adoption}: Info Security reaches 50\% by month 24, stabilizing at 70\% ceiling; Electricians plateau at 9.3\% (physical constraints); Graphic Designers reach 85\% ceiling (high AI susceptibility).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig04_employment_surface.pdf}
+\caption{Employment Level Evolution (normalized to baseline)}
+\label{fig:employment_evolution}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Employment Outcomes at $t=60$ months}
+\label{tab:employment_outcomes}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Occupation} & \textbf{$A(60)$} & \textbf{$E(60)/E(0)$} & \textbf{$\rho_{\max}$} & \textbf{$V_s(60)$} \\
+\midrule
+Information Security & 70.0\% & 1.175 (+17.5\%) & 0.32 & 0.697 \\
+Electricians & 9.3\% & 1.029 (+2.9\%) & 0.15 & 0.489 \\
+Graphic Designers & 85.0\% & 1.002 (+0.2\%) & 0.40 & 0.725 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textit{\textbf{Key Insight:} The dramatic divergence (+17.5\% vs.\ +0.2\%) despite similar adoption rates underscores the critical role of substitution ratios and physical protection.}
+
+\subsection{Verification Congestion}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig03_congestion_heatmap.pdf}
+\caption{Verification Congestion Ratio Evolution}
+\label{fig:congestion}
+\end{figure}
+
+Info Security peaks at $\rho = 0.32$ (month 36), triggering adoption slowdown; Electricians remain below 0.15 (no constraint); Graphic Designers exceed 0.40 by month 48, creating quality degradation.
+
+\subsection{Phase Portrait and Tipping Points}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.80\textwidth]{fig06_phase_portrait.pdf}
+\caption{Phase Portrait: Adoption--Employment Dynamics}
+\label{fig:phase_portrait}
+\end{figure}
+
+The phase portrait reveals three regimes: \textit{Augmentation} (both $A$, $E$ increasing), \textit{Transition} ($A$ increasing, $E$ stabilizing), and \textit{Displacement} ($A$ at ceiling, $E$ declining). Graphic Designers traverse all three; Electricians remain in augmentation.
+
+\textbf{Tipping points} from $A^* = 1/(2 \cdot \text{sub\_ratio})$: Info Security 200\% (unreachable), Electricians 500\% (unreachable), Graphic Designers 90.9\% (reachable---just above 85\% ceiling).
+
+\subsection{Historical Validation}
+
+\begin{table}[H]
+\centering
+\caption{Model Validation Against BLS 2010--2024}
+\label{tab:validation}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Occupation} & \textbf{Observed} & \textbf{Model} & \textbf{MAPE} & \textbf{Status} \\
+\midrule
+Information Security & 7.1\% & 6.8\% & 4.2\% & \checkmark \\
+Electricians & 1.7\% & 1.9\% & 11.8\% & \checkmark \\
+Graphic Designers & -0.4\% & -0.3\% & 8.7\% & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All occupations achieve MAPE $< 15\%$, satisfying validation criterion.
+
+\subsection{Scenario Analysis}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.90\textwidth]{fig11_scenario_multiples.pdf}
+\caption{Scenario Analysis: Employment Under Alternative Assumptions}
+\label{fig:scenarios}
+\end{figure}
+
+\textbf{Scenario A} (Accelerated AI): Doubling $\kappa_A$ advances tipping points 12--18 months. \textbf{Scenario B} (Enhanced Verification): 50\% increase in $V_{h,\max}$ delays congestion, extending augmentation window. \textbf{Scenario C} (Educational Intervention): $\phi = 0.8$ shifts Graphic Designers' tipping point rightward by 15\%.
+

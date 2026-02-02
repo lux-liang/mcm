@@ -1,0 +1,52 @@
+% ========== 3. Assumptions ==========
+\section{Assumptions and Justifications}
+
+Our model rests on carefully considered assumptions grounded in empirical evidence or theoretical necessity. Table~\ref{tab:assumptions} summarizes all assumptions with sensitivity classifications.
+
+\begin{table}[H]
+\centering
+\caption{Model Assumptions and Justifications}
+\label{tab:assumptions}
+\small
+\begin{tabular}{p{0.22\textwidth}p{0.48\textwidth}p{0.18\textwidth}}
+\toprule
+\textbf{Assumption} & \textbf{Justification} & \textbf{Sensitivity} \\
+\midrule
+\multicolumn{3}{l}{\textit{Task Structure Assumptions}} \\
+\midrule
+A1. Task weights stable & O*NET updates every 2--3 years; high temporal autocorrelation ($r > 0.85$) & Low \\
+A2. Tasks independent & Simplification; relaxed in extensions & Medium \\
+A3. Physical tasks resist automation & Hardware limitations, safety regulations & Low \\
+\midrule
+\multicolumn{3}{l}{\textit{Adoption Dynamics Assumptions}} \\
+\midrule
+A4. Logistic adoption with ceiling & Bass diffusion theory \cite{bass1969diffusion}; empirically validated & High \\
+A5. Verification bottleneck congestion & Braess paradox analogy; code review \& alert fatigue evidence & Medium \\
+A6. Multi-channel learning & Organizational learning theory \cite{argote2011organizational} & Medium \\
+\midrule
+\multicolumn{3}{l}{\textit{Labor Market Assumptions}} \\
+\midrule
+A7. Short-run supply inelastic & Educational pipeline delays (2--4 years) & Low \\
+A8. Wage adjustments lag employment & Wage stickiness literature & Medium \\
+A9. Firms optimize cost/quality & Microeconomic rationality & Low \\
+\midrule
+\multicolumn{3}{l}{\textit{Educational System Assumptions}} \\
+\midrule
+A10. Curricula modifiable in 1--2 years & Accreditation constraints & Medium \\
+A11. Enrollment responds to signals & Human capital theory & High \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Key Assumption Details}
+
+\paragraph{A4: Logistic Adoption.} AI adoption follows $dA/dt = \kappa_A A(1 - A/A_{\text{cap}}) - \lambda_{\text{cong}} A \rho$, where the congestion term is our novel extension capturing verification-induced slowdowns.
+
+\paragraph{A5: Verification Bottleneck.} Human verification capacity is finite; when AI output volume exceeds bandwidth, congestion emerges. Evidence: software code review bottlenecks, medical AI ``alert fatigue,'' creative industry quality degradation.
+
+\paragraph{A6: Multi-Channel Learning.} Workers acquire AI skills through: (1) on-the-job learning (proportional to usage), (2) social/peer learning (network effects), and (3) autonomous self-study (AI-assisted tutoring).
+
+\subsection{Robustness}
+
+Sensitivity analysis (Sec.~9) relaxes key assumptions: alternative adoption curves (S-curve, Gompertz, linear), labor supply elasticity $\epsilon_L \in [0.1, 0.5]$, and enrollment inertia $\tau \in [1, 4]$ years. Conclusions remain robust within reasonable parameter ranges.
+
