@@ -15,55 +15,92 @@ Our analysis integrates three authoritative data sources: O*NET for task structu
 \textbf{Source} & \textbf{Variables} & \textbf{Use in Model} \\
 \midrule
 O*NET 28.3 & 41 Work Activities, Work Context, 35 Skills & Task weights $w_k$, Physical Protection $P_i$, Capability $V_{s,0}$ \\
-BLS OEWS (2010--24) & Employment levels, wage estimates & Historical validation, calibration \\
-IPEDS (2023--24) & Program completions by institution & Supply estimation $S(t)$ \\
+BLS OEWS (2010--24) & Employment levels, wage estimates & Baseline calibration (2010--22), preliminary stress test (2023--24) \\
+IPEDS (2015--23) & Program completions by institution & Supply estimation $S(t)$ \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\subsection{Data Provenance and Measurement Definitions}
+
+To ensure full reproducibility, we document the extraction pipeline for each empirical quantity.
+
+\begin{table}[H]
+\centering
+\caption{External Data Provenance}
+\label{tab:data_provenance}
+\small
+\begin{tabular}{p{1.8cm}p{1.5cm}p{1.8cm}p{2.2cm}p{1.2cm}p{3.2cm}}
+\toprule
+\textbf{Occupation} & \textbf{Metric} & \textbf{Source} & \textbf{Code} & \textbf{Years} & \textbf{Extraction Rule} \\
+\midrule
+Info Security & Employment & BLS OEWS & SOC 15-1212 & 2012--24 & National, May estimates \\
+Info Security & Completions & IPEDS & CIP 11.1003, UnitID 211440 & 2015--23 & Award level 7 (Master's) \\
+Electricians & Employment & BLS OEWS & SOC 47-2111 & 2010--24 & National, May estimates \\
+Electricians & Completions & IPEDS & CIP 46.0302, UnitID 170657 & 2015--23 & Award levels 1,2,3,21 sum \\
+Graphic Design & Employment & BLS OEWS & SOC 27-1024 & 2010--24 & National, May estimates \\
+Graphic Design & Completions & IPEDS & CIP 50.0409, UnitID 217493 & 2015--21 & Award levels 5,7 sum \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textit{Notes: SOC 15-1212 (Information Security Analysts) becomes consistently available starting 2012 in OEWS; earlier years excluded to avoid SOC-2010 crosswalk-induced measurement error. IPEDS completions reflect 12-month reporting period; award levels follow IPEDS classification (1=Certificate $<$1yr, 2=Certificate 1--2yr, 3=Associate, 5=Bachelor's, 7=Master's, 21=Post-baccalaureate certificate). RISD data unavailable post-2021 in IPEDS public files; 2021 value carried forward with uncertainty flag.}
 
 \subsection{Employment Trends}
 
 \begin{table}[H]
 \centering
-\caption{Historical Employment Data}
+\caption{Historical Employment Data (BLS OEWS)}
 \label{tab:bls_data}
 \small
-\begin{tabular}{llccc}
+\begin{tabular}{llcccc}
 \toprule
-\textbf{SOC} & \textbf{Occupation} & \textbf{E(2010)} & \textbf{E(2024)} & \textbf{CAGR} \\
+\textbf{SOC} & \textbf{Occupation} & \textbf{E(2010)} & \textbf{E(2022)} & \textbf{E(2024)} & \textbf{CAGR$_{10-24}$} \\
 \midrule
-15-1212 & Information Security Analysts & 67,100 & 175,350 & 7.1\% \\
-47-2111 & Electricians & 577,000 & 728,600 & 1.7\% \\
-27-1024 & Graphic Designers & 279,200 & 264,800 & -0.4\% \\
+15-1212 & Info Security Analysts & 72,670$^\dagger$ & 163,690 & 187,940 & 7.9\% \\
+47-2111 & Electricians & 514,760 & 690,050 & 773,950 & 2.9\% \\
+27-1024 & Graphic Designers & 192,240 & 211,890 & 223,240 & 1.1\% \\
 \bottomrule
 \end{tabular}
 \end{table}
+\noindent\textit{$^\dagger$SOC 15-1212 series begins 2012; value shown is earliest available. E(2022) serves as pre-GenAI baseline for scenario injection. Source file: \texttt{oews\_target\_soc\_2010\_2024.csv}.}
 
 \subsection{Institutional Data}
 
 \begin{table}[H]
 \centering
-\caption{Partner Institution Program Completions}
+\caption{Partner Institution Program Completions (IPEDS)}
 \label{tab:ipeds_data}
 \small
-\begin{tabular}{llcc}
+\begin{tabular}{llcccc}
 \toprule
-\textbf{Institution} & \textbf{CIP Code} & \textbf{Program} & \textbf{Completions} \\
+\textbf{Institution} & \textbf{CIP} & \textbf{Program} & \textbf{Year} & \textbf{Completions} & \textbf{Award Level} \\
 \midrule
-Carnegie Mellon & 11.1003 & Computer/Info Security & 287 \\
-Lansing CC & 46.0302 & Electrician & 156 \\
-RISD & 50.0409 & Graphic Design & 312 \\
+Carnegie Mellon & 11.1003 & Info Security & 2023 & 143 & Master's \\
+Lansing CC & 46.0302 & Electrician & 2023 & 32 & Cert/Assoc \\
+RISD & 50.0409 & Graphic Design & 2021$^\ddagger$ & 61 & Bach/Master's \\
 \bottomrule
 \end{tabular}
 \end{table}
+\noindent\textit{$^\ddagger$RISD 2022--2023 data not available in IPEDS public release at time of analysis; 2021 reported with uncertainty. Source file: \texttt{ipeds\_completions\_real\_targets\_2015\_2023.csv}.}
+
+\subsection{Temporal Structure and Calibration Logic}
+
+A critical methodological consideration governs our use of historical data. The partitioning into pre-GenAI (2010--2022) and post-GenAI (2023+) periods is not arbitrary but reflects a \textit{structural break hypothesis}: the mechanisms governing AI-employment dynamics differ qualitatively across these regimes.
+
+\textbf{Why 2010--2022 supports structural calibration.} The pre-GenAI period exhibits stable technological regime characteristics: (i) AI tools (rule-based automation, narrow ML) operated on well-defined task boundaries; (ii) adoption followed predictable S-curve diffusion; (iii) employment responses were gradual and measurable. These conditions permit identification of \textit{structural parameters}---employment elasticity ($\kappa_E$), natural attrition ($\delta_0$), demand responsiveness ($\varepsilon_D$)---that govern labor market dynamics independent of the specific automation technology.
+
+\textbf{Why 2023+ permits only consistency checking.} The GenAI regime (post-ChatGPT, November 2022) introduces: (i) capability discontinuity (emergent abilities in LLMs); (ii) adoption acceleration (consumer-to-enterprise diffusion inversion); (iii) novel substitution patterns (creative/cognitive tasks newly exposed). With only 18 months of post-shock data, we cannot disentangle GenAI effects from macroeconomic confounders (tech layoffs, interest rate shocks). Parameters specific to GenAI ($A_{\text{cap}}$, $\kappa_A$, $s(t)$) therefore remain \textit{scenario assumptions} informed by expert elicitation and early surveys, not fitted quantities.
+
+This partition reflects an epistemological constraint: historical data can calibrate baseline dynamics but cannot validate GenAI-specific parameters, which remain scenario assumptions subject to sensitivity analysis.
 
 \subsection{Preprocessing}
 
-\textbf{O*NET}: Task importance scores normalized ($\sum w_k = 1$); physical tasks flagged via Work Context; AI exposure rated on 5-point scale based on cognitive complexity, data availability, and physical requirements.
+\textbf{O*NET}: Task importance scores normalized ($\sum w_k = 1$); physical tasks flagged via Work Context items 4.C.2 (Physical Proximity) and 4.C.3 (Exposed to Hazardous Conditions); AI exposure rated on 5-point scale based on cognitive complexity and data availability.
 
-\textbf{BLS}: SOC code revisions (2010, 2018) reconciled via crosswalks; May reference period used consistently.
+\textbf{BLS}: SOC-2010 to SOC-2018 crosswalk applied where necessary; May reference period used consistently; 2022 designated as pre-GenAI structural baseline.
 
-\textbf{IPEDS}: CIP-SOC crosswalk applied; completions adjusted by graduation rates.
+\textbf{IPEDS}: CIP-SOC crosswalk via NCES mapping; completions aggregated across award levels appropriate to each institution's program structure.
 
-\textbf{Quality Assurance}: Cross-validation against expert surveys; temporal consistency checks; outlier detection ($>$20\% YoY flagged); multiple imputation for missing data ($<$5\%).
+\textbf{Quality Assurance}: Temporal consistency checks (flag $>$20\% YoY changes); cross-validation of employment trends against BLS Employment Projections; institutional completions verified against public program descriptions.
 

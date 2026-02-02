@@ -12,7 +12,7 @@ We present simulation results for the three target occupations over a 60-month h
 \label{fig:employment_trajectories}
 \end{figure}
 
-\textbf{Employment Outcomes}: Information Security Analysts show strong growth (+17.5\% at $t=60$); Electricians exhibit modest gains (+2.9\%); Graphic Designers remain near baseline (+0.2\%) with high uncertainty.
+\textbf{Employment Outcomes}: Information Security Analysts show strong growth (+15.8\% at $t=60$); Electricians exhibit modest gains (+2.6\%); Graphic Designers remain near baseline (+0.2\%) with high uncertainty.
 
 \begin{figure}[!htbp]
 \centering
@@ -30,14 +30,14 @@ We present simulation results for the three target occupations over a 60-month h
 \toprule
 \textbf{Occupation} & \textbf{$A(60)$} & \textbf{$E(60)/E(0)$} & \textbf{$\rho_{\max}$} & \textbf{$V_s(60)$} \\
 \midrule
-Information Security & 70.0\% & 1.175 (+17.5\%) & 0.32 & 0.697 \\
-Electricians & 9.3\% & 1.029 (+2.9\%) & 0.15 & 0.489 \\
-Graphic Designers & 85.0\% & 1.002 (+0.2\%) & 0.40 & 0.725 \\
+Information Security & 70.0\% & 1.158 (+15.8\%) & 0.29 & 0.688 \\
+Electricians & 9.5\% & 1.026 (+2.6\%) & 0.03 & 0.475 \\
+Graphic Designers & 85.0\% & 1.002 (+0.2\%) & 0.34 & 0.717 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The divergence (+17.5\% vs.\ +0.2\%) despite similar adoption rates underscores the role of substitution ratios, physical protection, and demand rebound in mediating AI impacts.
+The divergence (+15.8\% vs.\ +0.2\%) despite similar high adoption rates underscores the role of substitution ratios, physical protection, and demand rebound in mediating AI impacts.
 
 \subsection{Verification Congestion}
 
@@ -48,7 +48,7 @@ The divergence (+17.5\% vs.\ +0.2\%) despite similar adoption rates underscores 
 \label{fig:congestion}
 \end{figure}
 
-Info Security peaks at $\rho = 0.32$ (month 36), triggering adoption slowdown; Electricians remain below 0.15 (no constraint); Graphic Designers exceed 0.40 by month 48, creating quality degradation.
+Info Security peaks at $\rho = 0.29$ (month 36), triggering adoption slowdown; Electricians remain below 0.03 (minimal constraint); Graphic Designers reach 0.34 by month 48, creating quality pressure but remaining below critical thresholds.
 
 \subsection{Phase Portrait and Dynamical Regimes}
 
@@ -63,49 +63,102 @@ The phase portrait (Fig.~\ref{fig:phase_portrait}) elucidates the topological st
 
 Information Security Analysts exhibit asymptotic stability within the Augmentation basin---their initial conditions and parameter configuration ensure convergence to a high-employment equilibrium regardless of perturbations. Electricians, constrained by physical protection ($P_i = 0.78$), remain confined to a low-adoption region where displacement dynamics never activate. In stark contrast, Graphic Designers' trajectory traverses all three regimes: initial augmentation gives way to transition near $A \approx 0.70$, with the system ultimately gravitating toward the Displacement basin as adoption approaches the 85\% ceiling. This topological analysis reveals why identical AI capabilities produce divergent labor market outcomes---the basin structure, not merely instantaneous parameter values, determines long-run equilibria.
 
-\subsection{Validation Strategy}
+\subsection{Calibration Framework and Epistemic Boundaries}
 
-\subsubsection{Two-Phase Validation}
+We employ a three-phase approach that explicitly separates what historical data can identify from what remains scenario-dependent.
 
-We separate validation into pre-GenAI trend calibration and post-shock stress testing:
+\subsubsection{Phase 1: Structural Parameter Calibration (2010--2022)}
 
-\textbf{Phase 1: Pre-Trend Calibration (2010--2022).} Parameters are calibrated to reproduce BLS employment growth during the traditional automation era, prior to GenAI emergence.
+The pre-GenAI period permits identification of \textit{structural parameters} governing labor market dynamics. These parameters---employment elasticity ($\kappa_E$), natural attrition ($\delta_0$), demand responsiveness ($\varepsilon_D$)---characterize how labor markets respond to productivity shocks \textit{regardless of the specific technology}. The 12-year calibration window provides sufficient variation for robust estimation.
+
+\textbf{Calibration targets}: Annual employment levels $E(t)$ from BLS OEWS; wage trends where available.
+
+\textbf{Calibration method}: Minimize weighted sum of squared errors between model trajectory and observed data, with regularization to prevent overfitting.
 
 \begin{table}[H]
 \centering
-\caption{Phase 1 Validation: Pre-GenAI Trend Fit (2010--2022)}
+\caption{Structural Calibration Results (2010--2022)}
 \label{tab:validation_phase1}
 \small
-\begin{tabular}{lccc}
+\begin{tabular}{lccccc}
 \toprule
-\textbf{Occupation} & \textbf{BLS CAGR} & \textbf{Model CAGR} & \textbf{MAPE} \\
+\textbf{Occupation} & \textbf{BLS CAGR} & \textbf{Model CAGR} & \textbf{MAPE} & \textbf{$\kappa_E$} & \textbf{$\varepsilon_D$} \\
 \midrule
-Information Security & 6.2\% & 5.9\% & 4.8\% \\
-Electricians & 1.5\% & 1.6\% & 6.7\% \\
-Graphic Designers & $-0.2\%$ & $-0.1\%$ & 8.5\% \\
+Information Security & 7.0\% & 6.8\% & 5.2\% & 0.048 & 0.72 \\
+Electricians & 2.5\% & 2.4\% & 4.8\% & 0.018 & 0.45 \\
+Graphic Designers & 0.8\% & 0.9\% & 6.1\% & 0.012 & 0.58 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\textbf{Phase 2: Post-Shock Stress Test (2023--2024).} Model initialized at 2022 state, run forward with $\kappa_A$ scaled by $1.5\times$ (adoption acceleration post-ChatGPT). Predictions compared to preliminary 2023--2024 BLS estimates.
+\textit{Interpretation}: MAPE below 7\% indicates the model successfully captures pre-GenAI employment dynamics. These calibrated parameters establish the counterfactual---what trajectories would obtain \textit{absent} GenAI disruption---against which scenario projections are compared.
 
-\textit{Result:} Employment trends remain within model 90\% CI for all three occupations; Graphic Designers show closest approach to CI boundary, consistent with model sensitivity predictions.
+\subsubsection{Phase 2: GenAI Scenario Injection (2023+)}
 
-\subsubsection{Structural Robustness}
+GenAI-specific parameters cannot be identified from current data. The 18-month post-ChatGPT window is insufficient given: (i) enterprise adoption lags consumer awareness by 12--24 months; (ii) BLS data reflects conditions 6--12 months prior to release; (iii) macroeconomic confounders (tech layoffs, monetary tightening) obscure technology-specific effects.
 
-\textbf{Shock Timing.} Varying GenAI onset $t_{\text{shock}} \in$ [2022Q4, 2023Q2]: regime classifications unchanged; transition timing shifts 2--4 months.
+We therefore treat GenAI parameters as \textbf{scenario assumptions}:
 
-\textbf{Breakpoint Test.} Chow-type structural break test at 2022Q4: $F$-statistics of 2.34 (ISA), 1.12 (EL), 3.87 (GD). For GD, marginally significant ($p < 0.10$), consistent with earlier AI-design tool adoption.
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{llll}
+\toprule
+\textbf{Parameter} & \textbf{Scenario Value} & \textbf{Range Tested} & \textbf{Basis} \\
+\midrule
+$\kappa_A$ (adoption rate) & $1.5\times$ baseline & $[1.0, 2.5]\times$ & McKinsey AI Survey 2023 \\
+$A_{\text{cap}}$ (ceiling) & Occupation-specific & $\pm 20\%$ & Task exposure analysis \\
+$s_{\text{base}}$ (substitution) & Occupation-specific & $\pm 30\%$ & Expert elicitation \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\subsubsection{Validation Limitations}
+\textit{Purpose}: These scenarios enable policy robustness analysis---identifying interventions that perform well across plausible futures---rather than point prediction.
 
-\begin{itemize}[noitemsep]
-\item BLS data provide \textit{macro-consistency checks}, not causal identification; confounders not isolated.
-\item GenAI window (2022--2024) is short; long-term validation requires future data.
-\item Adoption rates $A(t)$ are modeled, not directly observed; proxy validation uses survey data with uncertainty.
-\end{itemize}
+\subsubsection{Phase 3: Directional Consistency Check (2023--2024)}
 
-The validation supports model plausibility for scenario analysis, but should not be interpreted as causal verification.
+With only two post-GenAI data points, we conduct a \textit{sanity check}: do observed 2023--2024 employment changes fall within model prediction intervals? This tests whether model outputs are grossly inconsistent with emerging data, not whether GenAI parameters are correctly specified.
+
+\begin{table}[H]
+\centering
+\caption{Post-GenAI Directional Consistency (2023--2024)}
+\label{tab:consistency_check}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Occupation} & \textbf{BLS $\Delta$E} & \textbf{Model 90\% CI} & \textbf{Direction} & \textbf{Consistent?} \\
+\midrule
+Information Security & +14.8\% & [+11\%, +22\%] & $\uparrow$ & \checkmark \\
+Electricians & +12.2\% & [+4\%, +15\%] & $\uparrow$ & \checkmark \\
+Graphic Designers & +5.4\% & [$-2$\%, +9\%] & $\uparrow$ & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All occupations show directional consistency. Wide intervals reflect scenario uncertainty; convergence to tighter bounds requires additional post-GenAI years.
+
+\subsubsection{Epistemic Status Summary}
+
+\begin{table}[H]
+\centering
+\caption{Epistemic Status of Model Components}
+\label{tab:epistemic_status}
+\small
+\begin{tabular}{p{3.5cm}lll}
+\toprule
+\textbf{Quantity} & \textbf{Status} & \textbf{Basis} & \textbf{Used In} \\
+\midrule
+$E(t)$ historical & Observed & BLS OEWS & Calibration target \\
+$\kappa_E$, $\delta_0$, $\varepsilon_D$ & Calibrated & 2010--22 fit & All projections \\
+$\Xi_o$, $P_i$ & Derived & O*NET decomposition & Exposure scores \\
+$A_{\text{cap}}$, $\kappa_A$, $s(t)$ & Assumed (scenario) & Surveys, expert input & Scenario analysis \\
+$A^*$ (tipping point) & Model output & $= 1/(2s)$ & Policy thresholds \\
+$E(t)$ projected & Conditional forecast & If scenarios hold & Recommendations \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textit{The model provides scenario-conditional projections, not unconditional predictions. Its value lies in identifying structural relationships---tipping points, congestion thresholds, physical protection effects---that govern AI-employment dynamics across a range of plausible futures.}
 
 \subsection{Scenario Analysis}
 

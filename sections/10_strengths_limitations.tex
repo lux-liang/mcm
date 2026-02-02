@@ -3,17 +3,21 @@
 
 \subsection{Model Strengths}
 
-\textbf{Theoretical Innovations}: (1) Task-granular decomposition captures within-occupation heterogeneity; (2) Verification-Bottleneck Congestion explains productivity reversal at high adoption; (3) Physical Protection Index quantifies automation resistance; (4) Tipping point framework identifies critical adoption thresholds.
+\textbf{Theoretical Innovations}: (1) Task-granular decomposition captures within-occupation heterogeneity; (2) Verification-Bottleneck Congestion explains productivity reversal at high adoption; (3) Physical Protection Index quantifies automation resistance; (4) Tipping point framework identifies critical adoption thresholds amenable to policy intervention.
 
-\textbf{Methodological Strengths}: Multi-source data integration (O*NET, BLS, IPEDS); historical validation with MAPE $< 15\%$; comprehensive sensitivity analysis; actionable institution-specific recommendations.
+\textbf{Methodological Strengths}: Multi-source data integration (O*NET, BLS, IPEDS); explicit separation of calibration (2010--2022) from scenario projection (2023+); comprehensive sensitivity analysis across 8 parameters; actionable institution-specific recommendations grounded in structural analysis.
+
+\textbf{Epistemic Transparency}: Unlike many automation studies, we explicitly distinguish between empirically calibrated parameters (baseline dynamics) and scenario assumptions (Gen-AI effects), providing clear epistemic status for all model outputs.
 
 \subsection{Model Limitations}
 
-\textbf{Data Limitations}: Limited direct AI adoption measurement; O*NET data lag (2--3 years); national-level aggregation masks regional variation.
+\textbf{Validation Constraints}: The fundamental limitation is temporal: Gen-AI effects cannot be validated with current data. The 18-month post-ChatGPT observation window is insufficient for parameter identification. Our ``validation'' (MAPE $<$ 7\%) applies only to pre-GenAI baseline dynamics, not to the Gen-AI-specific mechanisms that constitute the model's novel contribution.
 
-\textbf{Modeling Limitations}: Deterministic dynamics; task independence assumption; exogenous AI capability; single-occupation focus without labor market transitions.
+\textbf{Data Limitations}: Limited direct AI adoption measurement (adoption rates $A(t)$ are modeled, not observed); O*NET data lag (2--3 years); national-level aggregation masks regional variation; IPEDS completions reflect degree conferrals rather than labor market entry.
 
-\textbf{Scope Limitations}: Three-occupation sample; U.S.-specific context; 5-year horizon.
+\textbf{Modeling Limitations}: Deterministic dynamics (no stochastic shocks); task independence assumption (ignores complementarities); exogenous AI capability trajectory; single-occupation focus without explicit modeling of labor market transitions between occupations.
+
+\textbf{Scope Limitations}: Three-occupation sample limits generalizability; U.S.-specific institutional context; 60-month projection horizon.
 
 \subsection{Comparison with Alternatives}
 
@@ -26,13 +30,16 @@
 \midrule
 Granularity & Task-level & Occupation & Skill \\
 Dynamics & ODEs & Static & Static \\
-Congestion & VBC & None & None \\
-Validation & BLS 2010--24 & Expert survey & Cross-sectional \\
+Congestion & VBC mechanism & None & None \\
+Calibration & BLS 2010--22 & Expert survey & Cross-sectional \\
+Gen-AI validation & Pending & N/A (pre-GenAI) & N/A \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \subsection{Future Directions}
 
-Key extensions: (1) stochastic differential equations; (2) multi-occupation network transitions; (3) endogenous AI capability; (4) international validation; (5) real-time monitoring dashboard.
+Key extensions for model development: (1) stochastic differential equations to capture adoption uncertainty; (2) multi-occupation network with explicit labor market transitions; (3) endogenous AI capability co-evolving with workforce adaptation; (4) international replication as post-GenAI data accumulates; (5) real-time monitoring dashboard linking to BLS quarterly releases.
+
+\textbf{Critical validation pathway}: As additional post-GenAI annual data accumulates, the scenario layer ($A_{\text{cap}}$, $\kappa_A$, $s(t)$) can be progressively replaced by empirical estimation, transforming conditional forecasts into validated predictions.
 
