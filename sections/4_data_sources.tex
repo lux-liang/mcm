@@ -11,12 +11,12 @@ Our analysis integrates three authoritative data sources: O*NET for task structu
 \caption{Data Sources and Key Variables}
 \label{tab:data_sources}
 \small
-\begin{tabular}{p{0.18\textwidth}p{0.32\textwidth}p{0.38\textwidth}}
+\begin{tabular}{>{\raggedright}p{2.5cm}>{\raggedright}p{5cm}>{\raggedright\arraybackslash}p{5.5cm}}
 \toprule
 \textbf{Source} & \textbf{Variables} & \textbf{Use in Model} \\
 \midrule
 O*NET 28.3 & 41 Work Activities, Work Context, 35 Skills & Task weights $w_k$, Physical Protection $P_i$, Capability $V_{s,0}$ \\
-BLS OEWS (2010--24) & Employment levels, wage estimates & Baseline calibration (2010--22), preliminary stress test (2023--24) \\
+BLS OEWS (2010--24) & Employment levels, wage estimates & Baseline calibration (2010--22), stress test (2023--24) \\
 IPEDS (2015--23) & Program completions by institution & Supply estimation $S(t)$ \\
 \bottomrule
 \end{tabular}
@@ -31,21 +31,22 @@ To ensure full reproducibility, we document the extraction pipeline for each emp
 \caption{External Data Provenance}
 \label{tab:data_provenance}
 \small
-\begin{tabular}{>{\raggedright}p{1.8cm}>{\raggedright}p{1.5cm}>{\raggedright}p{1.8cm}>{\raggedright}p{2.2cm}>{\raggedright}p{1.2cm}>{\raggedright\arraybackslash}p{3.2cm}}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lllll}
 \toprule
-\textbf{Occupation} & \textbf{Metric} & \textbf{Source} & \textbf{Code} & \textbf{Years} & \textbf{Extraction Rule} \\
+\textbf{Occupation} & \textbf{Metric} & \textbf{Source/Code} & \textbf{Years} & \textbf{Extraction} \\
 \midrule
-Info Security & Employment & BLS OEWS & SOC 15-1212 & 2012--24 & National, May estimates \\
-Info Security & Completions & IPEDS & CIP 11.1003, UnitID 211440 & 2015--23 & Award level 7 (Master's) \\
-Electricians & Employment & BLS OEWS & SOC 47-2111 & 2010--24 & National, May estimates \\
-Electricians & Completions & IPEDS & CIP 46.0302, UnitID 170657 & 2015--23 & Award levels 1,2,3,21 sum \\
-Graphic Design & Employment & BLS OEWS & SOC 27-1024 & 2010--24 & National, May estimates \\
-Graphic Design & Completions & IPEDS & CIP 50.0409, UnitID 217493 & 2015--21 & Award levels 5,7 sum \\
+Info Security & Employment & BLS / SOC 15-1212 & 2012--24 & National May \\
+Info Security & Completions & IPEDS / CIP 11.1003 & 2015--23 & Award level 7 \\
+Electricians & Employment & BLS / SOC 47-2111 & 2010--24 & National May \\
+Electricians & Completions & IPEDS / CIP 46.0302 & 2015--23 & Levels 1,2,3,21 \\
+Graphic Design & Employment & BLS / SOC 27-1024 & 2010--24 & National May \\
+Graphic Design & Completions & IPEDS / CIP 50.0409 & 2015--21 & Levels 5,7 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\noindent\textit{Notes: SOC 15-1212 (Information Security Analysts) becomes consistently available starting 2012 in OEWS; earlier years excluded to avoid SOC-2010 crosswalk-induced measurement error. IPEDS completions reflect 12-month reporting period; award levels follow IPEDS classification (1=Certificate $<$1yr, 2=Certificate 1--2yr, 3=Associate, 5=Bachelor's, 7=Master's, 21=Post-baccalaureate certificate). RISD data unavailable post-2021 in IPEDS public files; 2021 value carried forward with uncertainty flag.}
+\noindent\textit{Notes: SOC 15-1212 available from 2012 (SOC-2010 revision). IPEDS award levels: 1=Cert$<$1yr, 2=Cert 1--2yr, 3=Assoc, 5=Bach, 7=Master's. RISD unavailable post-2021; carried forward with uncertainty flag.}
 
 \subsection{Employment Trends}
 
