@@ -47,12 +47,7 @@ Graphic Designers & 0.12 & Weak protection \\
 
 The \textbf{VBC mechanism}: as AI adoption increases, AI-generated outputs requiring human oversight grow; when volume exceeds bandwidth, congestion degrades system performance.
 
-\textbf{Verification vs.\ Selection.} The parameter $\theta_V$ represents \textit{effective human bandwidth load}, encompassing both:
-\begin{itemize}[noitemsep]
-\item \textbf{Verification}: Checking AI outputs for errors, hallucinations, or policy violations (dominant for Information Security).
-\item \textbf{Selection/Curation}: Evaluating and ranking multiple AI-generated alternatives (dominant for Graphic Design).
-\end{itemize}
-For creative occupations, selection expands the design space but consumes attention for quality assessment and style consistency. We model $\theta_V = \theta_{\text{ver}} + \theta_{\text{sel}}$; for GD, $\theta_{\text{sel}}/\theta_V \approx 0.6$; for ISA, $\theta_{\text{ver}}/\theta_V \approx 0.85$.
+\textbf{Verification vs.\ Selection.} The parameter $\theta_V$ represents \textit{effective human bandwidth load}: verification (checking for errors/hallucinations; dominant for ISA, $\theta_{\text{ver}}/\theta_V \approx 0.85$) plus selection/curation (ranking AI alternatives; dominant for GD, $\theta_{\text{sel}}/\theta_V \approx 0.6$).
 
 \textbf{Adoption Dynamics:}
 \begin{equation}
@@ -65,11 +60,7 @@ For creative occupations, selection expands the design space but consumes attent
 \rho(t) = \frac{\theta_V A (1 + \gamma_G A)}{V_{h,\max} (1 - \rho_V A)}
 \label{eq:congestion}
 \end{equation}
-where $\rho_V \in [0.1, 0.3]$ represents the \textit{verification capacity erosion rate}---the marginal reduction in effective human oversight bandwidth per unit increase in AI adoption, arising from cognitive load spillovers and attention fragmentation. Empirically, $\rho_V$ captures the phenomenon whereby sustained high-volume AI output review degrades verification quality through fatigue effects.
-
-The quadratic term $(1 + \gamma_G A)$ arises from: (1) \textit{Selection combinatorics}---pairwise comparisons for quality ranking grow superlinearly with candidate volume; (2) \textit{Consistency maintenance}---verifying cross-output coherence (style, terminology, factual alignment) creates $O(n^2)$ checking overhead. This is a second-order Taylor expansion: $\text{Workload}(A) \approx \theta_V A + \theta_V \gamma_G A^2 + O(A^3)$. Calibration yields $\gamma_G \in [0.3, 0.8]$.
-
-\textit{Robustness:} Replacing the quadratic with saturating form $A/(1+\eta A)$ shifts tipping points by $<5\%$; regime structure remains unchanged.
+where $\rho_V \in [0.1, 0.3]$ is verification capacity erosion from cognitive load spillovers. The superlinear term $(1 + \gamma_G A)$ captures selection combinatorics and consistency maintenance overhead ($\gamma_G \in [0.3, 0.8]$). Replacing the quadratic with saturating form $A/(1+\eta A)$ shifts tipping points by $<5\%$.
 
 \textbf{Demand-Side Rebound.} AI adoption reduces effective production cost, potentially expanding market demand (Jevons Paradox):
 \begin{equation}
@@ -92,12 +83,12 @@ where $s_{\text{base}}$ is initial substitution (Table~\ref{tab:parameters}), $\
 \end{equation}
 The term $(1 - \text{sub\_ratio}(t) \cdot A)$ captures augmentation-to-displacement transition; $D(t)$ captures demand rebound.
 
-\textbf{Tipping Point Derivation.} The critical adoption threshold $A^*$ emerges analytically from the steady-state condition. Setting $dE/dt = 0$ in Equation~\ref{eq:employment_dynamics} and solving for the adoption level where employment growth vanishes yields:
+\textbf{Tipping Point Derivation.} Setting $dE/dt = 0$ in Equation~\ref{eq:employment_dynamics} yields the critical threshold:
 \begin{equation}
 A^*(t) = \frac{1}{2 \cdot \text{sub\_ratio}(t)}
 \label{eq:tipping_point}
 \end{equation}
-This threshold demarcates the transition from augmentation ($A < A^*$, where $dE/dt > 0$) to displacement ($A > A^*$, where $dE/dt < 0$). Crucially, $A^*$ is endogenous: as workforce capability $V_s$ grows, sub\_ratio declines via Equation~\ref{eq:dynamic_subratio}, thereby shifting the tipping point rightward and extending the augmentation regime.
+Below $A^*$, AI augments employment; above, it displaces. Crucially, $A^*$ is endogenous: as $V_s$ grows, sub\_ratio declines (Eq.~\ref{eq:dynamic_subratio}), shifting $A^*$ rightward.
 
 \subsection{Model III: Multi-Channel Learning}
 

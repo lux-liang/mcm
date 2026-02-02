@@ -85,16 +85,6 @@ RISD & 50.0409 & Graphic Design & 2021$^\ddagger$ & 61 & Bach/Master's \\
 \end{table}
 \noindent\textit{$^\ddagger$RISD 2022--2023 data not available in IPEDS public release at time of analysis; 2021 reported with uncertainty. Source file: \texttt{ipeds\_completions\_real\_targets\_2015\_2023.csv}.}
 
-\subsection{Temporal Structure and Calibration Logic}
-
-A critical methodological consideration governs our use of historical data. The partitioning into pre-GenAI (2010--2022) and post-GenAI (2023+) periods is not arbitrary but reflects a \textit{structural break hypothesis}: the mechanisms governing AI-employment dynamics differ qualitatively across these regimes.
-
-\textbf{Why 2010--2022 supports structural calibration.} The pre-GenAI period exhibits stable technological regime characteristics: (i) AI tools (rule-based automation, narrow ML) operated on well-defined task boundaries; (ii) adoption followed predictable S-curve diffusion; (iii) employment responses were gradual and measurable. These conditions permit identification of \textit{structural parameters}---employment elasticity ($\kappa_E$), natural attrition ($\delta_0$), demand responsiveness ($\varepsilon_D$)---that govern labor market dynamics independent of the specific automation technology.
-
-\textbf{Why 2023+ permits only consistency checking.} The GenAI regime (post-ChatGPT, November 2022) introduces: (i) capability discontinuity (emergent abilities in LLMs); (ii) adoption acceleration (consumer-to-enterprise diffusion inversion); (iii) novel substitution patterns (creative/cognitive tasks newly exposed). With only 18 months of post-shock data, we cannot disentangle GenAI effects from macroeconomic confounders (tech layoffs, interest rate shocks). Parameters specific to GenAI ($A_{\text{cap}}$, $\kappa_A$, $s(t)$) therefore remain \textit{scenario assumptions} informed by expert elicitation and early surveys, not fitted quantities.
-
-This partition reflects an epistemological constraint: historical data can calibrate baseline dynamics but cannot validate GenAI-specific parameters, which remain scenario assumptions subject to sensitivity analysis.
-
 \subsection{Preprocessing}
 
 \textbf{O*NET}: Task importance scores normalized ($\sum w_k = 1$); physical tasks flagged via Work Context items 4.C.2 (Physical Proximity) and 4.C.3 (Exposed to Hazardous Conditions); AI exposure rated on 5-point scale based on cognitive complexity and data availability.

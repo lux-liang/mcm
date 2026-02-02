@@ -60,9 +60,7 @@ Info Security peaks at $\rho = 0.29$ (month 36), triggering adoption slowdown; E
 \label{fig:phase_portrait}
 \end{figure}
 
-The phase portrait (Fig.~\ref{fig:phase_portrait}) elucidates the topological structure of the $(A, E)$ state space. The vector field reveals three distinct basins of attraction: (i) the \textit{Augmentation basin}, characterized by trajectories where both $\dot{A} > 0$ and $\dot{E} > 0$, converging toward a stable fixed point with elevated employment; (ii) the \textit{Transition manifold}, a separatrix region where $\dot{A} > 0$ but $\dot{E} \approx 0$, representing the marginal zone near $A^*$; and (iii) the \textit{Displacement basin}, where trajectories approach the adoption ceiling ($A \to A_{\text{cap}}$) while employment contracts ($\dot{E} < 0$).
-
-Information Security Analysts exhibit asymptotic stability within the Augmentation basin---their initial conditions and parameter configuration ensure convergence to a high-employment equilibrium regardless of perturbations. Electricians, constrained by physical protection ($P_i = 0.78$), remain confined to a low-adoption region where displacement dynamics never activate. In stark contrast, Graphic Designers' trajectory traverses all three regimes: initial augmentation gives way to transition near $A \approx 0.70$, with the system ultimately gravitating toward the Displacement basin as adoption approaches the 85\% ceiling. This topological analysis reveals why identical AI capabilities produce divergent labor market outcomes---the basin structure, not merely instantaneous parameter values, determines long-run equilibria.
+The phase portrait (Fig.~\ref{fig:phase_portrait}) reveals three basins of attraction: (i) \textit{Augmentation} ($\dot{A} > 0$, $\dot{E} > 0$), (ii) \textit{Transition} ($\dot{A} > 0$, $\dot{E} \approx 0$), and (iii) \textit{Displacement} ($A \to A_{\text{cap}}$, $\dot{E} < 0$). Information Security converges to the Augmentation basin; Electricians remain confined to low-adoption regions; Graphic Designers traverse all three regimes as adoption approaches the 85\% ceiling. The basin structure, not instantaneous parameters, determines long-run equilibria.
 
 \subsection{Calibration Framework and Epistemic Boundaries}
 
@@ -70,11 +68,7 @@ We employ a three-phase approach that explicitly separates what historical data 
 
 \subsubsection{Phase 1: Structural Parameter Calibration (2010--2022)}
 
-The pre-GenAI period permits identification of \textit{structural parameters} governing labor market dynamics. These parameters---employment elasticity ($\kappa_E$), natural attrition ($\delta_0$), demand responsiveness ($\varepsilon_D$)---characterize how labor markets respond to productivity shocks \textit{regardless of the specific technology}. The 12-year calibration window provides sufficient variation for robust estimation.
-
-\textbf{Calibration targets}: Annual employment levels $E(t)$ from BLS OEWS; wage trends where available.
-
-\textbf{Calibration method}: Minimize weighted sum of squared errors between model trajectory and observed data, with regularization to prevent overfitting.
+Pre-GenAI structural parameters ($\kappa_E$, $\delta_0$, $\varepsilon_D$) are calibrated by minimizing weighted SSE between model trajectory and BLS OEWS annual employment (2010--2022).
 
 \begin{table}[H]
 \centering
@@ -92,13 +86,11 @@ Graphic Designers & 0.8\% & 0.9\% & 6.1\% & 0.012 & 0.58 \\
 \end{tabular}
 \end{table}
 
-\textit{Interpretation}: MAPE below 7\% indicates the model successfully captures pre-GenAI employment dynamics. These calibrated parameters establish the counterfactual---what trajectories would obtain \textit{absent} GenAI disruption---against which scenario projections are compared.
+\textit{MAPE below 7\% confirms successful capture of pre-GenAI dynamics; calibrated parameters define the counterfactual trajectory absent GenAI disruption.}
 
 \subsubsection{Phase 2: GenAI Scenario Injection (2023+)}
 
-GenAI-specific parameters cannot be identified from current data. The 18-month post-ChatGPT window is insufficient given: (i) enterprise adoption lags consumer awareness by 12--24 months; (ii) BLS data reflects conditions 6--12 months prior to release; (iii) macroeconomic confounders (tech layoffs, monetary tightening) obscure technology-specific effects.
-
-We therefore treat GenAI parameters as \textbf{scenario assumptions}:
+GenAI parameters cannot be identified from current data (18-month window, confounded by tech layoffs and monetary tightening). We treat them as \textbf{scenario assumptions}:
 
 \begin{table}[H]
 \centering
@@ -113,9 +105,7 @@ $s_{\text{base}}$ (substitution) & Occupation-specific & $\pm 30\%$ & Eloundou e
 \bottomrule
 \end{tabular}
 \end{table}
-\noindent\textit{Note: Ranges represent plausible bounds informed by literature review; no claim of empirical identification is made. All scenario parameters are tested via sensitivity analysis (Sec.~9).}
-
-\textit{Purpose}: These scenarios enable policy robustness analysis---identifying interventions that perform well across plausible futures---rather than point prediction.
+\noindent\textit{Note: Ranges represent plausible bounds; no claim of empirical identification is made. All tested via sensitivity analysis (Sec.~9).}
 
 \subsubsection{Phase 3: Directional Consistency Check (2023--2024)}
 
@@ -138,30 +128,7 @@ Graphic Designers & +5.4\% & [$-2$\%, +9\%] & $\uparrow$ & Yes \\
 \end{table}
 \noindent\textit{$^\dagger$BLS $\Delta$E computed as $(E_{2024} - E_{2022})/E_{2022}$: ISA $(187940-163690)/163690$; Elec $(773950-690050)/690050$; GD $(223240-211890)/211890$. Source: Table~\ref{tab:audit_bls}.}
 
-All occupations show directional consistency. Wide intervals reflect scenario uncertainty; convergence to tighter bounds requires additional post-GenAI years.
-
-\subsubsection{Epistemic Status Summary}
-
-\begin{table}[H]
-\centering
-\caption{Epistemic Status of Model Components}
-\label{tab:epistemic_status}
-\small
-\begin{tabular}{p{3.5cm}lll}
-\toprule
-\textbf{Quantity} & \textbf{Status} & \textbf{Basis} & \textbf{Used In} \\
-\midrule
-$E(t)$ historical & Observed & BLS OEWS & Calibration target \\
-$\kappa_E$, $\delta_0$, $\varepsilon_D$ & Calibrated & 2010--22 fit & All projections \\
-$\Xi_o$, $P_i$ & Derived & O*NET decomposition & Exposure scores \\
-$A_{\text{cap}}$, $\kappa_A$, $s(t)$ & Assumed & Surveys, expert input & Scenario analysis \\
-$A^*$ (tipping point) & Derived & Eq.~\ref{eq:tipping_point} & Policy thresholds \\
-$E(t)$ projected & Conditional & If assumptions hold & Recommendations \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\noindent\textit{The model provides scenario-conditional projections, not unconditional predictions. Its value lies in identifying structural relationships---tipping points, congestion thresholds, physical protection effects---that govern AI-employment dynamics across a range of plausible futures.}
+All occupations show directional consistency. Wide intervals reflect scenario uncertainty. Full epistemic classification of parameters is provided in Table~\ref{tab:audit_params} (Appendix A).
 
 \subsection{Scenario Analysis}
 

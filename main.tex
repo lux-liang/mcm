@@ -35,15 +35,15 @@
 \usepackage{amssymb}
 
 % ========== Page Layout Optimization ==========
-\setlength{\parskip}{0.2em}
+\setlength{\parskip}{0.15em}
 \setlist{nosep, leftmargin=1.5em}
-\setlength{\floatsep}{6pt plus 2pt minus 2pt}
-\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
-\setlength{\intextsep}{6pt plus 2pt minus 2pt}
-\setlength{\abovecaptionskip}{4pt}
-\setlength{\belowcaptionskip}{2pt}
-\setlength{\abovedisplayskip}{6pt}
-\setlength{\belowdisplayskip}{6pt}
+\setlength{\floatsep}{5pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
+\setlength{\intextsep}{5pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{1pt}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\bottomfraction}{0.70}
 \renewcommand{\textfraction}{0.10}
@@ -104,13 +104,9 @@
 
 % ===== Summary Sheet =====
 \begin{abstract}
-The accelerating deployment of Generative AI (Gen-AI) systems confronts labor economics with a fundamental paradox: technologies engineered for human augmentation may, beyond critical adoption thresholds, precipitate employment displacement. We term this the \textbf{Tipping Point Paradox} and develop the \textbf{\fullmodelname{} (\modelname{})} framework to elucidate its underlying mechanisms and identify conditions for its resolution.
+The accelerating deployment of Generative AI (Gen-AI) confronts labor economics with a fundamental paradox: technologies engineered for augmentation may, beyond critical adoption thresholds, precipitate displacement. We develop the \textbf{\fullmodelname{} (\modelname{})} framework comprising three dynamical models: \textbf{Model I} (Task Decomposition) yields a Composite Exposure Index ($\Xi_o$) and Physical Protection Index ($P_i$) from O*NET data; \textbf{Model II} (Verification-Bottleneck Congestion) generates occupation-specific tipping points ($A^* = 1/2s$) where employment transitions from augmentation to displacement; \textbf{Model III} (Educational Feedback) demonstrates how curriculum interventions shift tipping points rightward.
 
-Our theoretical contribution centers on three interconnected dynamical models. \textbf{Model I} (Task Decomposition) operationalizes occupation-level AI susceptibility through granular task analysis, yielding a Composite Exposure Index ($\Xi_o$) and Physical Protection Index ($P_i$) derived from O*NET work activity data. \textbf{Model II} (Verification-Bottleneck Congestion) formalizes the mechanism whereby finite human oversight capacity constrains sustainable AI adoption, generating occupation-specific tipping points ($A^* = 1/2s$) where employment dynamics transition from augmentation to displacement. \textbf{Model III} (Educational Feedback) demonstrates how curriculum interventions modulate workforce capability ($V_s$), thereby shifting tipping points rightward and extending the augmentation window.
-
-Empirical application to three archetypal occupations---\textit{Information Security Analysts} (STEM), \textit{Electricians} (Trade), and \textit{Graphic Designers} (Arts)---reveals divergent trajectories. Electricians exhibit robust physical protection ($P_i = 0.78$) with adoption constrained below 10\%; Information Security Analysts occupy a permanent augmentation basin with tipping points exceeding feasible adoption levels; Graphic Designers approach the displacement threshold ($A^* = 90.9\%$ versus $A_{\text{cap}} = 85\%$), though educational intervention can avert this outcome. The Graphic Designer case exemplifies \textit{unit labor value dilution}: stable employment (+0.2\%) masks wage compression (-4\%) as productivity gains dissipate through market saturation rather than accruing to workers.
-
-Validation against BLS employment data (2010--2022) yields baseline calibration MAPE below 7\% across occupations; we conduct post-2023 stress tests under explicitly stated GenAI scenarios, with scenario parameters subject to comprehensive sensitivity analysis. Institution-specific recommendations follow: Carnegie Mellon University (maintain enrollment; frontier AI integration), Lansing Community College (expand 9--13\%; auxiliary tools), Rhode Island School of Design (maintain enrollment; curriculum AI-intensity $\phi = 0.25$). The framework generalizes to any occupation amenable to task decomposition, offering a principled analytical apparatus for navigating the AI-employment nexus. We conclude that the tipping point is not destiny but a design parameter---amenable to institutional intervention, policy modulation, and proactive human capital investment.
+Application to three archetypal occupations reveals divergent trajectories: Electricians exhibit robust physical protection ($P_i = 0.78$, adoption $<10\%$); Information Security Analysts occupy a permanent augmentation basin ($A^* > 150\%$); Graphic Designers approach the displacement threshold ($A^* = 90.9\%$ vs.\ $A_{\text{cap}} = 85\%$), though educational intervention averts this outcome. Calibration against BLS data (2010--2022) yields MAPE $<7\%$; GenAI-specific parameters are treated as scenario assumptions subject to sensitivity analysis. Institution-specific recommendations: Carnegie Mellon (maintain enrollment; frontier AI), Lansing CC (expand 9--13\%), RISD (curriculum AI-intensity $\phi = 0.25$). We conclude that the tipping point is not destiny but a design parameter.
 \end{abstract}
 
 \begin{keywords}

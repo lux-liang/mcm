@@ -4,11 +4,11 @@
 
 \subsection{Methodology}
 
-We employ Partial Rank Correlation Coefficient (PRCC) analysis with Latin Hypercube Sampling (LHS) to assess global parameter sensitivity. PRCC is appropriate because: (1) it captures monotonic relationships under rank transformation, controlling for correlations among inputs; (2) it remains robust when output distributions are non-normal; (3) it quantifies each parameter's unique contribution after removing linear effects of others.
+We employ Partial Rank Correlation Coefficient (PRCC) analysis with Latin Hypercube Sampling (LHS, $N=1{,}000$) to assess global parameter sensitivity. PRCC captures monotonic relationships under rank transformation, remains robust for non-normal outputs, and quantifies each parameter's unique contribution after removing linear effects of others.
 
-\textbf{Parameter Set and Perturbation.} We perturb $p = 8$ parameters around occupation-specific calibrated baselines (Table~\ref{tab:parameters}). Each parameter $\theta_j$ is sampled from $\theta_j^{\text{base}} \times (1 + \epsilon_j)$, where $\epsilon_j \sim \mathcal{U}(-r_j, r_j)$ with $r_j$ denoting the perturbation half-range. LHS ensures stratified coverage of the 8-dimensional input space with $N=1000$ samples, improving variance estimation over simple Monte Carlo.
+\textbf{Parameter Set.} We perturb $p = 8$ parameters around occupation-specific calibrated baselines (Table~\ref{tab:parameters}). Each parameter $\theta_j$ is sampled from $\theta_j^{\text{base}} \times (1 + \epsilon_j)$, $\epsilon_j \sim \mathcal{U}(-r_j, r_j)$.
 
-\textbf{Output Metrics.} For each sample, we record: (i) terminal employment ratio $E(60)/E(0)$, (ii) maximum congestion $\rho_{\max}$, (iii) time to reach 50\% of adoption ceiling $t_{50}$. PRCC is computed separately for each occupation-output pair.
+\textbf{Output Metrics.} Terminal employment ratio $E(60)/E(0)$, maximum congestion $\rho_{\max}$, and time to 50\% adoption $t_{50}$.
 
 \begin{table}[H]
 \centering
@@ -93,7 +93,7 @@ Graphic Designers exhibit the widest CI, reflecting uncertainty that could push 
 
 \subsection{Critical Thresholds and Policy Implications}
 
-The sensitivity analysis identifies parameter boundaries beyond which the model predicts regime transitions. These are \textit{model-implied thresholds} conditional on the TECM structure, not empirically observed breakpoints:
+The sensitivity analysis identifies \textit{model-implied thresholds} conditional on the TECM structure, not empirically observed breakpoints:
 
 \begin{itemize}[noitemsep]
 \item \textbf{Graphic Designers displacement}: Model predicts net employment decline when sub\_ratio $> 0.60$ OR $\varepsilon_D < 0.25$ (based on parameter sweep across calibrated baseline)
@@ -101,9 +101,7 @@ The sensitivity analysis identifies parameter boundaries beyond which the model 
 \item \textbf{Info Security saturation}: Congestion-induced adoption plateau when $\kappa_A > 0.50$ (exceeds current survey estimates)
 \end{itemize}
 
-The dominance of $A_{\text{cap}}$ (PRCC = 0.95) as the highest-sensitivity parameter carries profound policy implications. Effective intervention should prioritize mechanisms that modulate the \textit{adoption ceiling} rather than attempting to prohibit AI deployment outright. Regulatory approaches might include professional certification requirements for AI-assisted work, quality standards that necessitate human verification, or liability frameworks that incentivize human oversight. Simultaneously, investments in \textit{human verification capacity} ($V_{h,\max}$) offer a complementary lever: expanding cognitive bandwidth through training, workflow optimization, and human-AI interface improvements delays congestion onset and preserves the augmentation regime.
-
-This sensitivity structure suggests that blunt instruments---technology bans, rigid automation taxes---will prove less effective than nuanced policies targeting the specific parameters ($A_{\text{cap}}$, $s(t)$, $V_{h,\max}$) that govern regime transitions. The goal should not be to halt technological diffusion but to shape its trajectory through the parameter space toward basins of attraction with favorable employment outcomes.
+The dominance of $A_{\text{cap}}$ (PRCC = 0.95) implies effective intervention should target adoption ceiling modulation (certification requirements, quality standards, liability frameworks) rather than technology prohibition. Investments in verification capacity ($V_{h,\max}$) offer a complementary lever. Blunt instruments---technology bans, rigid automation taxes---will prove less effective than policies targeting $A_{\text{cap}}$, $s(t)$, and $V_{h,\max}$ to steer trajectories toward favorable employment basins.
 
 \FloatBarrier
 
