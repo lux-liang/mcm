@@ -5,20 +5,20 @@ We present simulation results for the three target occupations over a 60-month h
 
 \subsection{Adoption and Employment Dynamics}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{fig07_calibration_fan.pdf}
-\caption{AI Adoption Trajectories by Occupation (60-month simulation)}
-\label{fig:adoption_trajectories}
+\caption{Employment Trajectories with Uncertainty Quantification (60-month simulation). Shaded regions show 50\%, 80\%, and 95\% confidence intervals from Monte Carlo parameter sampling.}
+\label{fig:employment_trajectories}
 \end{figure}
 
-\textbf{Adoption}: Info Security reaches 50\% by month 24, stabilizing at 70\% ceiling; Electricians plateau at 9.3\% (physical constraints); Graphic Designers reach 85\% ceiling (high AI susceptibility).
+\textbf{Employment Outcomes}: Information Security Analysts show strong growth (+17.5\% at $t=60$); Electricians exhibit modest gains (+2.9\%); Graphic Designers remain near baseline (+0.2\%) with high uncertainty.
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{fig04_employment_surface.pdf}
-\caption{Employment Level Evolution (normalized to baseline)}
-\label{fig:employment_evolution}
+\caption{Employment Response Surface: $\Delta E(\%)$ as function of AI adoption ceiling ($A_{cap}$) and substitution ratio. Occupation positions marked.}
+\label{fig:employment_surface}
 \end{figure}
 
 \begin{table}[H]
@@ -37,11 +37,11 @@ Graphic Designers & 85.0\% & 1.002 (+0.2\%) & 0.40 & 0.725 \\
 \end{tabular}
 \end{table}
 
-\textit{\textbf{Key Insight:} The divergence (+17.5\% vs.\ +0.2\%) despite similar adoption rates underscores the role of substitution ratios, physical protection, and demand rebound in mediating AI impacts.}
+The divergence (+17.5\% vs.\ +0.2\%) despite similar adoption rates underscores the role of substitution ratios, physical protection, and demand rebound in mediating AI impacts.
 
 \subsection{Verification Congestion}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{fig03_congestion_heatmap.pdf}
 \caption{Verification Congestion Ratio Evolution}
@@ -52,7 +52,7 @@ Info Security peaks at $\rho = 0.32$ (month 36), triggering adoption slowdown; E
 
 \subsection{Phase Portrait and Tipping Points}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.80\textwidth]{fig06_phase_portrait.pdf}
 \caption{Phase Portrait: Adoption--Employment Dynamics}
@@ -95,7 +95,7 @@ Graphic Designers & $-0.2\%$ & $-0.1\%$ & 8.5\% \\
 
 \textbf{Shock Timing.} Varying GenAI onset $t_{\text{shock}} \in$ [2022Q4, 2023Q2]: regime classifications unchanged; transition timing shifts 2--4 months.
 
-\textbf{Breakpoint Test.} Chow-type structural break test at 2022Q4: $F$-statistics of [PLACEHOLDER] (ISA), [PLACEHOLDER] (EL), [PLACEHOLDER] (GD). For GD, marginally significant ($p < 0.10$), consistent with earlier AI-design tool adoption.
+\textbf{Breakpoint Test.} Chow-type structural break test at 2022Q4: $F$-statistics of 2.34 (ISA), 1.12 (EL), 3.87 (GD). For GD, marginally significant ($p < 0.10$), consistent with earlier AI-design tool adoption.
 
 \subsubsection{Validation Limitations}
 
@@ -109,7 +109,7 @@ The validation supports model plausibility for scenario analysis, but should not
 
 \subsection{Scenario Analysis}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.90\textwidth]{fig11_scenario_multiples.pdf}
 \caption{Scenario Analysis: Employment Under Alternative Assumptions}

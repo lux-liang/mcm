@@ -3,7 +3,7 @@
 
 The TECM framework comprises three interconnected models with shared state variables: $A(t)$ (adoption rate), $E(t)$ (employment level), $V_s(t)$ (workforce capability), $\rho(t)$ (verification congestion ratio), and $D(t)$ (demand multiplier).
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.90\textwidth]{fig01_architecture.pdf}
 \caption{TECM Framework Architecture. Solid arrows: direct effects. Dashed arrows: feedback loops. The demand rebound pathway (Cost $\to$ Demand $\to$ Employment) captures Jevons Paradox effects.}
@@ -108,7 +108,7 @@ where $L_{\text{job}} = \eta_{\text{job}} A (V_{s,\max} - V_s) \mathbb{1}_{A > 0
 
 \textbf{Educational Intervention:} $V_s^{\text{new}} = V_s + \phi_{\text{curr}} N_{\text{grad}} \Delta t$
 
-\textit{\textbf{Key Insight:} For Graphic Designers, $V_s$ growth from 0.4 to 0.725 reduces sub\_ratio from 0.55 to $\sim$0.42, shifting $A^*$ from 90.9\% to 119\% (exceeding $A_{\text{cap}}$)---converting potential displacement to permanent augmentation.}
+For Graphic Designers, $V_s$ growth from 0.4 to 0.725 reduces sub\_ratio from 0.55 to $\sim$0.42, shifting $A^*$ from 90.9\% to 119\% (exceeding $A_{\text{cap}}$)---converting potential displacement to permanent augmentation.
 
 \subsection{Parameter Calibration}
 

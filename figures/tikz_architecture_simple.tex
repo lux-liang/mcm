@@ -1,0 +1,89 @@
+% TECM Framework - Simplified Version for Paper Inclusion
+% Include this in main.tex with: \input{figures/tikz_architecture_simple}
+% Requires: \usepackage{tikz}, \usetikzlibrary{shapes, arrows.meta, positioning, fit, calc}
+
+\begin{figure}[H]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+    model/.style={rectangle, rounded corners=5pt, minimum height=2.2cm, minimum width=3.8cm,
+                  font=\small, align=center, line width=1.2pt},
+    state/.style={rectangle, rounded corners=4pt, draw=gray!70, fill=gray!8,
+                  minimum height=1.4cm, minimum width=11cm, font=\small, align=center, line width=1.5pt},
+    tipping/.style={rectangle, rounded corners=5pt, draw=orange!80!black, fill=yellow!15,
+                    minimum height=1.2cm, minimum width=8cm, font=\small, align=center, line width=1.5pt},
+    arrow/.style={-{Stealth[length=3mm]}, line width=1.2pt},
+    feedback/.style={-{Stealth[length=2.5mm]}, line width=1pt, dashed, red!60!black},
+]
+
+% Title
+\node[font=\bfseries\large] at (6, 9) {TECM Framework Architecture};
+
+% Model I
+\node[model, draw=orange!70, fill=orange!10] (m1) at (0, 6.5) {
+    \textbf{Model I}\\[2pt]
+    Task Decomposition\\
+    \& Risk Assessment\\[4pt]
+    $\Xi_o = \sum_k w_k \xi_k (1-\alpha_p p_k)$\\[2pt]
+    $P_i$ = Physical Protection
+};
+
+% Model II
+\node[model, draw=green!60!black, fill=green!8] (m2) at (6, 6.5) {
+    \textbf{Model II}\\[2pt]
+    VBC Dynamics\\[4pt]
+    $\frac{dA}{dt}$, $\frac{dE}{dt}$\\[2pt]
+    $\rho(t)$ = Congestion\\
+    $D(t)$ = Demand (Jevons)
+};
+
+% Model III
+\node[model, draw=purple!60, fill=purple!8] (m3) at (12, 6.5) {
+    \textbf{Model III}\\[2pt]
+    Multi-Channel Learning\\[4pt]
+    $\frac{dV_s}{dt} = L_{job} + L_{soc}$\\[2pt]
+    $+ L_{auto} - \delta_V V_s$\\
+    Educational Feedback
+};
+
+% State Variables
+\node[state] (state) at (6, 3.5) {
+    \textbf{Shared State Variables}\\[4pt]
+    $A(t)$ Adoption \quad | \quad $E(t)$ Employment \quad | \quad $V_s(t)$ Capability \quad | \quad $\rho(t)$ Congestion \quad | \quad $D(t)$ Demand
+};
+
+% Tipping Point
+\node[tipping] (tip) at (6, 1) {
+    \textbf{Tipping Point Analysis}\\[4pt]
+    $A^*(t) = \frac{1}{2 \cdot s(t)}$ \quad where \quad $s(t) = \frac{s_{base}}{1+\beta_s V_s(t)}$
+};
+
+% Direct arrows (Model to State)
+\draw[arrow] (m1.south) -- ++(0,-0.5) -| ($(state.north west)+(1.5,0)$);
+\draw[arrow] (m2.south) -- (state.north);
+\draw[arrow] (m3.south) -- ++(0,-0.5) -| ($(state.north east)+(-1.5,0)$);
+
+% State to Tipping
+\draw[arrow] (state.south) -- (tip.north);
+
+% Feedback loops
+\draw[feedback] ($(state.east)+(0,0.2)$) -- ++(1,0) |- ($(m3.east)+(0,-0.3)$);
+\node[font=\scriptsize, text=red!60!black] at (13.8, 5) {$V_s \to s\downarrow$};
+
+\draw[feedback] ($(state.west)+(0,0.2)$) -- ++(-1,0) |- ($(m1.west)+(0,-0.3)$);
+\node[font=\scriptsize, text=red!60!black] at (-1.8, 5) {$\Xi_o, P_i$};
+
+\draw[feedback] (tip.east) -- ++(0.5,0) |- ($(m2.east)+(0,-0.5)$);
+\node[font=\scriptsize, text=red!60!black] at (11, 2.5) {$A^* \to E$};
+
+% Legend
+\draw[arrow] (0.5, -0.3) -- (1.5, -0.3);
+\node[font=\scriptsize] at (2.5, -0.3) {Direct Effect};
+\draw[feedback] (4, -0.3) -- (5, -0.3);
+\node[font=\scriptsize] at (6.2, -0.3) {Feedback Loop};
+
+\end{tikzpicture}
+}
+\caption{TECM Framework Architecture. Three interconnected models share state variables and create feedback loops. The demand rebound (Jevons Paradox) and educational feedback loops are key mechanisms enabling intervention.}
+\label{fig:architecture_new}
+\end{figure}
