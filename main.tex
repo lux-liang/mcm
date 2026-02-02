@@ -26,6 +26,7 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{booktabs}
+\usepackage{array}
 \usepackage{multirow}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
@@ -104,9 +105,15 @@
 
 % ===== Summary Sheet =====
 \begin{abstract}
-The accelerating deployment of Generative AI (Gen-AI) confronts labor economics with a fundamental paradox: technologies engineered for augmentation may, beyond critical adoption thresholds, precipitate displacement. We develop the \textbf{\fullmodelname{} (\modelname{})} framework comprising three dynamical models: \textbf{Model I} (Task Decomposition) yields a Composite Exposure Index ($\Xi_o$) and Physical Protection Index ($P_i$) from O*NET data; \textbf{Model II} (Verification-Bottleneck Congestion) generates occupation-specific tipping points ($A^* = 1/2s$) where employment transitions from augmentation to displacement; \textbf{Model III} (Educational Feedback) demonstrates how curriculum interventions shift tipping points rightward.
+\textbf{Problem.} Educational institutions face unprecedented uncertainty: Generative AI technologies designed for human augmentation may, beyond critical adoption thresholds, precipitate employment displacement. We develop a principled framework to identify these thresholds and inform enrollment and curriculum decisions.
 
-Application to three archetypal occupations reveals divergent trajectories: Electricians exhibit robust physical protection ($P_i = 0.78$, adoption $<10\%$); Information Security Analysts occupy a permanent augmentation basin ($A^* > 150\%$); Graphic Designers approach the displacement threshold ($A^* = 90.9\%$ vs.\ $A_{\text{cap}} = 85\%$), though educational intervention averts this outcome. Calibration against BLS data (2010--2022) yields MAPE $<7\%$; GenAI-specific parameters are treated as scenario assumptions subject to sensitivity analysis. Institution-specific recommendations: Carnegie Mellon (maintain enrollment; frontier AI), Lansing CC (expand 9--13\%), RISD (curriculum AI-intensity $\phi = 0.25$). We conclude that the tipping point is not destiny but a design parameter.
+\textbf{Data.} We integrate three authoritative sources: O*NET 28.3 for task-level AI exposure ($K = 41$ work activities per occupation), BLS OEWS (2010--2024) for employment dynamics, and IPEDS (2015--2023) for educational supply. Structural parameters are calibrated against 12 years of pre-GenAI data (2010--2022, MAPE $<7\%$); GenAI-specific parameters are treated as scenario assumptions subject to sensitivity analysis.
+
+\textbf{Model.} The Task--Exposure--Congestion--Market (TECM) framework comprises three coupled models: Model I (Task Decomposition) yields a Composite Exposure Index ($\Xi_o$) and Physical Protection Index ($P_i$); Model II (Verification-Bottleneck Congestion) generates occupation-specific tipping points $A^* = 1/(2s)$ where employment transitions from augmentation to displacement; Model III (Educational Feedback) demonstrates how curriculum interventions shift $A^*$ rightward by elevating workforce capability $V_s$.
+
+\textbf{Results.} Application to three archetypal occupations reveals divergent trajectories: Information Security Analysts occupy a permanent augmentation basin ($A^* > 150\%$, employment $+15.8\%$ at $t=60$); Electricians exhibit robust physical protection ($P_i = 0.78$, adoption $<10\%$); Graphic Designers approach the displacement threshold ($A^* = 90.9\%$ vs.\ $A_{\text{cap}} = 85\%$). PRCC analysis identifies $A_{\text{cap}}$ (0.95), sub\_ratio ($-0.82$), and $\kappa_A$ (0.82) as highest-sensitivity parameters.
+
+\textbf{Recommendations.} Carnegie Mellon (maintain enrollment; integrate frontier AI security tools); Lansing Community College (expand 9--13\%; emphasize physical task complementarity); Rhode Island School of Design (maintain enrollment; target curriculum AI-intensity $\phi = 0.25$ to shift $A^*$ beyond $A_{\text{cap}}$). The tipping point is not destiny---it is a design parameter amenable to institutional intervention.
 \end{abstract}
 
 \begin{keywords}
