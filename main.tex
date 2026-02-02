@@ -56,6 +56,38 @@
 \large A Task-Granular Framework for Career Evolution and Educational Adaptation}
 \date{}
 
+% ===== References formatting hard-fix (alignment + urls) =====
+\usepackage[hidelinks]{hyperref} % clickable urls, no colored boxes
+\usepackage{url}                 % robust \url handling
+
+\makeatletter
+% Force bibliography to behave like a well-aligned list, independent of mcmthesis tweaks
+\renewenvironment{thebibliography}[1]
+  {%
+    \section*{\refname}%
+    \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+    \list{\@biblabel{\@arabic\c@enumiv}}%
+         {%
+           % --- key alignment controls ---
+           \setlength{\labelwidth}{3.2em}% width reserved for [99] style labels
+           \setlength{\labelsep}{0.6em}% gap between label and text
+           \setlength{\leftmargin}{\labelwidth}%
+           \addtolength{\leftmargin}{\labelsep}%
+           \setlength{\itemindent}{0pt}%
+           \setlength{\listparindent}{0pt}%
+           % --- spacing controls (optional, safe) ---
+           \setlength{\parsep}{0pt}%
+           \setlength{\itemsep}{0.2em}%
+         }%
+    \usecounter{enumiv}%
+    \let\p@enumiv\@empty
+    \renewcommand\theenumiv{\@arabic\c@enumiv}%
+  }%
+  {%
+    \endlist
+  }%
+\makeatother
+
 \begin{document}
 
 % ===== Summary Sheet =====
