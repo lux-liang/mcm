@@ -50,18 +50,18 @@ The divergence (+17.5\% vs.\ +0.2\%) despite similar adoption rates underscores 
 
 Info Security peaks at $\rho = 0.32$ (month 36), triggering adoption slowdown; Electricians remain below 0.15 (no constraint); Graphic Designers exceed 0.40 by month 48, creating quality degradation.
 
-\subsection{Phase Portrait and Tipping Points}
+\subsection{Phase Portrait and Dynamical Regimes}
 
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.80\textwidth]{fig06_phase_portrait.pdf}
-\caption{Phase Portrait: Adoption--Employment Dynamics}
+\caption{Phase Portrait: Adoption--Employment Dynamics. Vector fields illustrate trajectory flows; nullclines partition the state space into distinct dynamical regimes.}
 \label{fig:phase_portrait}
 \end{figure}
 
-The phase portrait reveals three regimes: \textit{Augmentation} (both $A$, $E$ increasing), \textit{Transition} ($A$ increasing, $E$ stabilizing), \textit{Displacement} ($A$ at ceiling, $E$ declining). Graphic Designers traverse all three; Electricians remain in augmentation.
+The phase portrait (Fig.~\ref{fig:phase_portrait}) elucidates the topological structure of the $(A, E)$ state space. The vector field reveals three distinct basins of attraction: (i) the \textit{Augmentation basin}, characterized by trajectories where both $\dot{A} > 0$ and $\dot{E} > 0$, converging toward a stable fixed point with elevated employment; (ii) the \textit{Transition manifold}, a separatrix region where $\dot{A} > 0$ but $\dot{E} \approx 0$, representing the marginal zone near $A^*$; and (iii) the \textit{Displacement basin}, where trajectories approach the adoption ceiling ($A \to A_{\text{cap}}$) while employment contracts ($\dot{E} < 0$).
 
-\textbf{Tipping points} from $A^*(t) = 1/(2 \cdot \text{sub\_ratio}(t))$: at $t=0$, ISA 200\% (unreachable), EL 500\% (unreachable), GD 90.9\% (near ceiling). With skill growth, GD's effective $A^*$ increases to $\sim$119\% by $t=60$.
+Information Security Analysts exhibit asymptotic stability within the Augmentation basin---their initial conditions and parameter configuration ensure convergence to a high-employment equilibrium regardless of perturbations. Electricians, constrained by physical protection ($P_i = 0.78$), remain confined to a low-adoption region where displacement dynamics never activate. In stark contrast, Graphic Designers' trajectory traverses all three regimes: initial augmentation gives way to transition near $A \approx 0.70$, with the system ultimately gravitating toward the Displacement basin as adoption approaches the 85\% ceiling. This topological analysis reveals why identical AI capabilities produce divergent labor market outcomes---the basin structure, not merely instantaneous parameter values, determines long-run equilibria.
 
 \subsection{Validation Strategy}
 

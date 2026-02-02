@@ -64,6 +64,7 @@ For creative occupations, selection expands the design space but consumes attent
 \rho(t) = \frac{\theta_V A (1 + \gamma_G A)}{V_{h,\max} (1 - \rho_V A)}
 \label{eq:congestion}
 \end{equation}
+where $\rho_V \in [0.1, 0.3]$ represents the \textit{verification capacity erosion rate}---the marginal reduction in effective human oversight bandwidth per unit increase in AI adoption, arising from cognitive load spillovers and attention fragmentation. Empirically, $\rho_V$ captures the phenomenon whereby sustained high-volume AI output review degrades verification quality through fatigue effects.
 
 The quadratic term $(1 + \gamma_G A)$ arises from: (1) \textit{Selection combinatorics}---pairwise comparisons for quality ranking grow superlinearly with candidate volume; (2) \textit{Consistency maintenance}---verifying cross-output coherence (style, terminology, factual alignment) creates $O(n^2)$ checking overhead. This is a second-order Taylor expansion: $\text{Workload}(A) \approx \theta_V A + \theta_V \gamma_G A^2 + O(A^3)$. Calibration yields $\gamma_G \in [0.3, 0.8]$.
 
@@ -90,12 +91,12 @@ where $s_{\text{base}}$ is initial substitution (Table~\ref{tab:parameters}), $\
 \end{equation}
 The term $(1 - \text{sub\_ratio}(t) \cdot A)$ captures augmentation-to-displacement transition; $D(t)$ captures demand rebound.
 
-\textbf{Tipping Point:}
+\textbf{Tipping Point Derivation.} The critical adoption threshold $A^*$ emerges analytically from the steady-state condition. Setting $dE/dt = 0$ in Equation~\ref{eq:employment_dynamics} and solving for the adoption level where employment growth vanishes yields:
 \begin{equation}
 A^*(t) = \frac{1}{2 \cdot \text{sub\_ratio}(t)}
 \label{eq:tipping_point}
 \end{equation}
-As $V_s$ grows, sub\_ratio declines, pushing $A^*$ rightward.
+This threshold demarcates the transition from augmentation ($A < A^*$, where $dE/dt > 0$) to displacement ($A > A^*$, where $dE/dt < 0$). Crucially, $A^*$ is endogenous: as workforce capability $V_s$ grows, sub\_ratio declines via Equation~\ref{eq:dynamic_subratio}, thereby shifting the tipping point rightward and extending the augmentation regime.
 
 \subsection{Model III: Multi-Channel Learning}
 

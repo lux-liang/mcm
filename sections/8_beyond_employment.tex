@@ -1,14 +1,16 @@
 % ========== 8. Beyond Employment ==========
 \section{Factors Beyond Employment}
 
-While employment anchors our analysis, full AI impact extends to multiple career dimensions.
+While employment anchors our analysis, a comprehensive assessment of AI's occupational impact necessitates examination of wage dynamics, work quality transformations, and holistic career viability.
 
-\subsection{Wage Dynamics}
+\subsection{Wage Dynamics and the Substitution-Skill Tension}
 
-AI affects wages through augmentation premium, substitution pressure, and skill premium:
+AI affects wages through three competing channels: augmentation premium, substitution pressure, and skill premium. We formalize this relationship as:
 \begin{equation}
-w(t) = w_0 \cdot \left[\frac{\text{MPL}_{\text{aug}}(A)}{\text{MPL}_0} - \alpha_{\text{sub}} \cdot A(t) + \beta_{\text{skill}} \cdot V_s(t)\right]
+w(t) = w_0 \cdot \left[\frac{\text{MPL}_{\text{aug}}(A)}{\text{MPL}_0} - \alpha_{\text{sub}} \cdot s(t) \cdot A(t) + \beta_{\text{skill}} \cdot V_s(t)\right]
+\label{eq:wage_dynamics}
 \end{equation}
+where the substitution pressure term now explicitly incorporates the dynamic substitution ratio $s(t)$ from Equation~\ref{eq:dynamic_subratio}. This linkage reveals a critical tension: the skill premium ($\beta_{\text{skill}} \cdot V_s$) that workers accumulate through AI proficiency is progressively cannibalized by substitution pressure ($\alpha_{\text{sub}} \cdot s(t) \cdot A$) as AI capability evolves. For Graphic Designers, where $s_{\text{base}} = 0.55$ substantially exceeds other occupations, this cannibalization effect dominates.
 
 \begin{table}[H]
 \centering
@@ -24,7 +26,7 @@ Graphic Designers & +8\% & -12\% & \textbf{-4\%} \\
 \end{tabular}
 \end{table}
 
-Graphic Designers face wage compression despite stable employment, as AI productivity gains accrue to employers while supply increases depress rates.
+The paradoxical stagnation of Graphic Designers---employment growth of merely +0.2\% despite 85\% AI adoption---demands deeper economic interpretation than simple cost reduction. We identify the mechanism as \textbf{unit labor value dilution}: while AI-augmented productivity enables each designer to produce substantially more output per hour, this productivity surplus is not captured as wage gains but rather dissipated through market saturation. The Jevons-predicted demand expansion ($\varepsilon_D = 0.6$) proves insufficient to absorb the productivity-induced supply surge, resulting in per-unit labor value compression that marginalizes individual worker bargaining power even as aggregate employment stabilizes.
 
 \subsection{Work Quality and Task Shifts}
 
