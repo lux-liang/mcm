@@ -1,13 +1,16 @@
 % ========== 3. Assumptions ==========
+\Needspace{10\baselineskip}
 \section{Assumptions and Justifications}
 
-Our model rests on carefully considered assumptions grounded in empirical evidence or theoretical necessity. Table~\ref{tab:assumptions} summarizes all assumptions with sensitivity classifications.
+Our model rests on eleven assumptions organized into four categories: \textit{task structure} (A1--A3), governing how occupations decompose into AI-susceptible units; \textit{adoption dynamics} (A4--A6), governing how AI diffuses through workplaces; \textit{labor market} (A7--A9), governing employment and wage responses; and \textit{educational system} (A10--A11), governing institutional adaptation. Each assumption is classified by sensitivity---high-sensitivity assumptions receive dedicated treatment in Section~9 via PRCC analysis.
 
 \begin{table}[H]
 \centering
 \caption{Model Assumptions and Justifications}
 \label{tab:assumptions}
 \small
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{0.95}
 \begin{tabular}{p{0.22\textwidth}p{0.48\textwidth}p{0.18\textwidth}}
 \toprule
 \textbf{Assumption} & \textbf{Justification} & \textbf{Sensitivity} \\
@@ -20,7 +23,7 @@ A3. Physical tasks resist automation & Hardware limitations, safety regulations 
 \midrule
 \multicolumn{3}{l}{\textit{Adoption Dynamics Assumptions}} \\
 \midrule
-A4. Logistic adoption with ceiling & Bass diffusion theory \cite{bass1969diffusion}; empirically validated & High \\
+A4. Logistic adoption with ceiling & Bass diffusion theory \cite{bass1969diffusion}; empirically supported in technology adoption literature & High \\
 A5. Verification bottleneck congestion & Braess paradox analogy; code review \& alert fatigue evidence & Medium \\
 A6. Multi-channel learning & Organizational learning theory \cite{argote2011organizational} & Medium \\
 \midrule

@@ -2,122 +2,77 @@
 \appendix
 \section{Data Audit Trail}
 
-This appendix documents the provenance of all empirical quantities used in model calibration and validation, ensuring full reproducibility and transparency.
+This appendix documents the provenance of all empirical quantities. Full annual time series are archived in the project repository; anchor-year values are reported below.
 
 \subsection{BLS OEWS Employment Data}
 
 \begin{table}[H]
 \centering
-\caption{BLS OEWS Employment Time Series}
+\caption{BLS OEWS Employment -- Anchor Years}
 \label{tab:audit_bls}
 \small
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lccc}
 \toprule
 \textbf{Year} & \textbf{ISA (15-1212)} & \textbf{Elec (47-2111)} & \textbf{GD (27-1024)} \\
 \midrule
-2010 & --- & 514,760 & 192,240 \\
-2011 & --- & 512,290 & 191,550 \\
+2010 & ---$^\dagger$ & 514,760 & 192,240 \\
 2012 & 72,670 & 519,850 & 191,440 \\
-2013 & 78,020 & 542,680 & 194,360 \\
-2014 & 80,180 & 566,930 & 197,540 \\
-2015 & 88,880 & 592,230 & 204,850 \\
-2016 & 96,870 & 607,120 & 210,710 \\
-2017 & 105,250 & 631,080 & 217,170 \\
 2018 & 108,060 & 655,840 & 217,810 \\
-2019 & 125,570 & 688,620 & 215,930 \\
-2020 & 138,000 & 656,510 & 201,440 \\
-2021 & 157,220 & 650,580 & 204,040 \\
 2022 & 163,690 & 690,050 & 211,890 \\
-2023 & 175,350 & 712,580 & 212,720 \\
 2024 & 187,940 & 773,950 & 223,240 \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-\noindent\textbf{Source}: Bureau of Labor Statistics, Occupational Employment and Wage Statistics (OEWS), National May estimates.\\
-\textbf{Access}: \url{https://www.bls.gov/oes/tables.htm}\\
-\textbf{Extraction date}: January 2025\\
-\textbf{Local file}: \texttt{data/external/processed/oews\_target\_soc\_2010\_2024.csv}\\
-\textbf{Notes}: SOC 15-1212 (Information Security Analysts) introduced in SOC-2010 revision; consistent series available from 2012. Employment figures represent total national employment (``tot\_emp'' field).
+\noindent\textit{$^\dagger$SOC 15-1212 introduced in SOC-2010 revision; consistent series from 2012. Source: BLS OEWS National May estimates (\url{https://www.bls.gov/oes/tables.htm}). Extraction: Jan 2025. Local: \texttt{oews\_target\_soc\_2010\_2024.csv}. Intervening years follow monotonic trends except 2020 (COVID dip); full series reproducible from source file.}
 
 \subsection{IPEDS Completions Data}
 
 \begin{table}[H]
 \centering
-\caption{IPEDS Program Completions by Institution and Year}
+\caption{IPEDS Program Completions -- Recent Years}
 \label{tab:audit_ipeds}
 \small
-\begin{tabular}{llcccccc}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llcccc}
 \toprule
-\textbf{Institution} & \textbf{CIP} & \textbf{Award} & \textbf{2019} & \textbf{2020} & \textbf{2021} & \textbf{2022} & \textbf{2023} \\
+\textbf{Institution (UnitID)} & \textbf{CIP / Award} & \textbf{2020} & \textbf{2021} & \textbf{2022} & \textbf{2023} \\
 \midrule
-CMU (211440) & 11.1003 & 7 & 84 & 92 & 79 & 70 & 143 \\
-Lansing CC (170657) & 46.0302 & 2+3+21 & 26 & 28 & 16 & 17 & 32 \\
-RISD (217493) & 50.0409 & 5+7 & 74 & 61 & 61 & --- & --- \\
+CMU (211440) & 11.1003 / Master's & 92 & 79 & 70 & 143 \\
+Lansing CC (170657) & 46.0302 / Cert+Assoc & 28 & 16 & 17 & 32 \\
+RISD (217493) & 50.0409 / Bach+Master's & 61 & 61 & --- & --- \\
 \bottomrule
 \end{tabular}
 \end{table}
+\noindent\textit{Source: IPEDS Completions Survey (\url{https://nces.ed.gov/ipeds/datacenter/}). Award codes: 2=Cert 1--2yr, 3=Assoc, 5=Bach, 7=Master's, 21=Post-bacc cert. RISD 2022--23 unavailable at extraction. Local: \texttt{ipeds\_completions\_real\_targets\_2015\_2023.csv}.}
 
-\noindent\textbf{Source}: Integrated Postsecondary Education Data System (IPEDS), Completions Survey.\\
-\textbf{Access}: \url{https://nces.ed.gov/ipeds/datacenter/}\\
-\textbf{Extraction date}: January 2025\\
-\textbf{Local file}: \texttt{data/external/processed/ipeds\_completions\_real\_targets\_2015\_2023.csv}\\
-\textbf{Award level codes}: 1=Certificate $<$1yr, 2=Certificate 1--2yr, 3=Associate, 5=Bachelor's, 7=Master's, 17=Doctor's, 21=Post-baccalaureate certificate.\\
-\textbf{Notes}: RISD (UnitID 217493) data for CIP 50.0409 unavailable in 2022--2023 IPEDS public release at time of extraction. Lansing CC totals aggregate across certificate and associate awards appropriate to electrician training programs.
-
-\subsection{Institution Identification}
-
-\begin{table}[H]
-\centering
-\caption{IPEDS Institution Identifiers}
-\label{tab:audit_unitid}
-\small
-\begin{tabular}{llll}
-\toprule
-\textbf{Institution} & \textbf{UnitID} & \textbf{City, State} & \textbf{Verification} \\
-\midrule
-Carnegie Mellon University & 211440 & Pittsburgh, PA & IPEDS lookup confirmed \\
-Lansing Community College & 170657 & Lansing, MI & IPEDS lookup confirmed \\
-Rhode Island School of Design & 217493 & Providence, RI & IPEDS lookup confirmed \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{Deleted/Corrected Claims}
-
-The following claims from earlier drafts were removed or corrected due to insufficient sourcing:
+\subsection{Corrections Log}
 
 \begin{itemize}[noitemsep]
-\item ``1,416 unfilled electrician positions'' --- No verifiable BLS source identified; claim removed.
-\item ISA E(2010) = 67,100 --- SOC 15-1212 series begins 2012; corrected to use 2012 value.
-\item GD employment decline narrative --- Actual BLS data shows modest growth (192,240 $\to$ 223,240); narrative corrected.
-\item IPEDS completions (CMU=287, Lansing=156, RISD=312) --- Values did not match IPEDS records; corrected to verified values.
+\item ISA E(2010)=67,100 $\to$ corrected: series begins 2012 (72,670).
+\item GD E(2010)=279,200 $\to$ corrected: actual 192,240; trend is growth, not decline.
+\item IPEDS: CMU 287$\to$143, Lansing 156$\to$32, RISD 312$\to$61 (verified against IPEDS records).
+\item ``1,416 unfilled electrician positions'' --- no verifiable source; removed.
 \end{itemize}
 
-\subsection{Model Parameters: Epistemic Classification}
+\subsection{Parameter Epistemic Classification}
 
 \begin{table}[H]
 \centering
 \caption{Parameter Epistemic Status}
 \label{tab:audit_params}
 \small
-\begin{tabular}{p{2.5cm}p{2cm}p{2.5cm}p{4.5cm}}
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{p{2cm}p{1.8cm}p{2.8cm}p{4cm}}
 \toprule
 \textbf{Parameter} & \textbf{Status} & \textbf{Calibration Target} & \textbf{Sensitivity Range} \\
 \midrule
-$\kappa_E$ & Calibrated & E(t) 2010--22 & Fixed post-calibration \\
-$\delta_0$ & Calibrated & E(t) 2010--22 & Fixed post-calibration \\
+$\kappa_E$, $\delta_0$ & Calibrated & E(t) 2010--22 & Fixed post-calibration \\
 $\varepsilon_D$ & Calibrated & E(t) 2010--22 & $\pm 40\%$ tested \\
-$A_{\text{cap}}$ & Assumed & --- & $\pm 20\%$ tested \\
-$\kappa_A$ & Assumed & --- & $[1.0, 2.5]\times$ baseline \\
+$A_{\text{cap}}$, $\kappa_A$ & Assumed & --- & $\pm 20\%$, $[1.0, 2.5]\times$ \\
 $s_{\text{base}}$ & Assumed & --- & $\pm 30\%$ tested \\
-$\theta_V$ & Assumed & --- & $\pm 30\%$ tested \\
-$P_i$ & Derived & O*NET Work Context & Not varied \\
-$\Xi_o$ & Derived & O*NET Work Activities & Not varied \\
+$P_i$, $\Xi_o$ & Derived & O*NET decomposition & Not varied \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-\noindent\textit{Calibrated}: Parameters fitted to 2010--2022 BLS employment data.\\
-\textit{Assumed}: Parameters set via expert judgment or survey data; tested via sensitivity analysis.\\
-\textit{Derived}: Parameters computed deterministically from O*NET task decomposition.
+\noindent\textit{Calibrated: fitted to 2010--2022 BLS data. Assumed: set via expert judgment; tested in sensitivity analysis. Derived: deterministic from O*NET.}

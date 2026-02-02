@@ -1,75 +1,37 @@
 % ========== 8. Beyond Employment ==========
+\Needspace{8\baselineskip}
 \section{Factors Beyond Employment}
 
-While employment anchors our analysis, a comprehensive assessment of AI's occupational impact necessitates examination of wage dynamics, work quality transformations, and holistic career viability.
+Employment alone understates AI's occupational impact. We assess wage dynamics, work quality, and holistic career viability.
 
-\subsection{Wage Dynamics and the Substitution-Skill Tension}
+\subsection{Wage Dynamics and Unit Labor Value Dilution}
 
-AI affects wages through three competing channels: augmentation premium, substitution pressure, and skill premium. We formalize this relationship as:
+AI affects wages through augmentation premium, substitution pressure, and skill premium:
 \begin{equation}
 w(t) = w_0 \cdot \left[\frac{\text{MPL}_{\text{aug}}(A)}{\text{MPL}_0} - \alpha_{\text{sub}} \cdot s(t) \cdot A(t) + \beta_{\text{skill}} \cdot V_s(t)\right]
 \label{eq:wage_dynamics}
 \end{equation}
-where the substitution pressure term now explicitly incorporates the dynamic substitution ratio $s(t)$ from Equation~\ref{eq:dynamic_subratio}. This linkage reveals a critical tension: the skill premium ($\beta_{\text{skill}} \cdot V_s$) that workers accumulate through AI proficiency is progressively cannibalized by substitution pressure ($\alpha_{\text{sub}} \cdot s(t) \cdot A$) as AI capability evolves. For Graphic Designers, where $s_{\text{base}} = 0.55$ substantially exceeds other occupations, this cannibalization effect dominates.
+where the substitution pressure term incorporates the dynamic substitution ratio $s(t)$ from Equation~\ref{eq:dynamic_subratio}. For Graphic Designers ($s_{\text{base}} = 0.55$), substitution cannibalization dominates the skill premium.
 
-\begin{table}[H]
-\centering
-\small
-\begin{tabular}{lccc}
-\toprule
-\textbf{Occupation} & \textbf{Augmentation} & \textbf{Substitution} & \textbf{Net} \\
-\midrule
-Info Security & +18\% & -4\% & \textbf{+14\%} \\
-Electricians & +5\% & -1\% & \textbf{+4\%} \\
-Graphic Designers & +8\% & -12\% & \textbf{-4\%} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The paradoxical stagnation of Graphic Designers---employment growth of merely +0.2\% despite 85\% AI adoption---demands deeper economic interpretation than simple cost reduction. We identify the mechanism as \textbf{unit labor value dilution}: while AI-augmented productivity enables each designer to produce substantially more output per hour, this productivity surplus is not captured as wage gains but rather dissipated through market saturation. The Jevons-predicted demand expansion ($\varepsilon_D = 0.6$) proves insufficient to absorb the productivity-induced supply surge, resulting in per-unit labor value compression that marginalizes individual worker bargaining power even as aggregate employment stabilizes.
-
-\subsection{Work Quality and Task Shifts}
-
-As AI assumes routine tasks, workers focus on: verification/QA, exception handling, strategic oversight, and interpersonal interaction.
-
-\textbf{Task Shifts by Occupation}:
-\begin{itemize}[noitemsep]
-\item \textbf{Info Security}: Reduced log analysis $\to$ increased threat synthesis, incident command
-\item \textbf{Electricians}: Reduced routine calculations $\to$ increased complex troubleshooting
-\item \textbf{Graphic Designers}: Reduced concept generation $\to$ increased creative direction, AI curation
-\end{itemize}
-
-\subsection{Job Satisfaction}
-
-\begin{table}[H]
-\centering
-\small
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Occupation} & \textbf{Autonomy} & \textbf{Mastery} & \textbf{Purpose} & \textbf{Overall} \\
-\midrule
-Info Security & $\uparrow$ & $\uparrow$ & $\rightarrow$ & \textbf{+12\%} \\
-Electricians & $\rightarrow$ & $\rightarrow$ & $\rightarrow$ & \textbf{+2\%} \\
-Graphic Designers & $\downarrow$ & $\downarrow$ & $\downarrow$ & \textbf{-18\%} \\
-\bottomrule
-\end{tabular}
-\end{table}
+The paradoxical stagnation of Graphic Designers---employment growth of +0.2\% despite 85\% adoption---reflects \textbf{unit labor value dilution}: AI-augmented productivity gains dissipate through market saturation rather than accruing as wage growth. The Jevons-predicted demand expansion ($\varepsilon_D = 0.6$) proves insufficient to absorb the productivity-induced supply surge.
 
 \subsection{Holistic Viability Assessment}
 
 \begin{table}[H]
 \centering
+\caption{Holistic Career Viability: Employment, Wages, and Beyond}
 \small
-\begin{tabular}{lccccc}
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lcccccccc}
 \toprule
-\textbf{Occupation} & \textbf{Employ} & \textbf{Wages} & \textbf{Satisf.} & \textbf{Mobility} & \textbf{Overall} \\
+\textbf{Occupation} & \textbf{$\Delta$Emp} & \textbf{$\Delta$Wage} & \textbf{Satisf.} & \textbf{Mobility} & \textbf{Task Shift} & \textbf{Overall} \\
 \midrule
-Info Security & 9/10 & 8/10 & 8/10 & 9/10 & \textbf{8.5/10} \\
-Electricians & 8/10 & 7/10 & 7/10 & 6/10 & \textbf{7.0/10} \\
-Graphic Designers & 5/10 & 4/10 & 4/10 & 6/10 & \textbf{4.8/10} \\
+Info Security & +15.8\% & +14\% & +12\% & 9/10 & Log analysis $\to$ threat synthesis & \textbf{8.5/10} \\
+Electricians & +2.6\% & +4\% & +2\% & 6/10 & Calculations $\to$ troubleshooting & \textbf{7.0/10} \\
+Graphic Design & +0.2\% & $-4$\% & $-18$\% & 6/10 & Concept gen $\to$ creative direction & \textbf{4.8/10} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-When factors beyond employment are considered, Graphic Designer viability (4.8/10) falls well below Info Security (8.5/10), suggesting employment-only metrics understate AI-era career disparities.
+When factors beyond employment are considered, Graphic Designer viability (4.8/10) falls well below Information Security (8.5/10), suggesting employment-only metrics understate AI-era career disparities. The wage compression ($-4$\%) and satisfaction decline ($-18$\%) for Graphic Designers---driven by creative autonomy loss and skill-identity erosion---present a starker picture than the near-zero employment change implies.
 
