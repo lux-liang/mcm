@@ -1,23 +1,29 @@
 % ========== 4. Data Sources ==========
-\Needspace{8\baselineskip}
 \section{Data Sources and Preprocessing}
 
 Our analysis integrates three authoritative data sources: O*NET for task structure, BLS OEWS for employment dynamics, and IPEDS for educational supply.
 
 \subsection{Primary Data Sources}
 
-\begin{table}[H]
+\begin{table}[!htbp]
 \centering
 \caption{Data Sources and Key Variables}
 \label{tab:data_sources}
 \small
-\begin{tabular}{>{\raggedright}p{2.5cm}>{\raggedright}p{5cm}>{\raggedright\arraybackslash}p{5.5cm}}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{3cm}>{\raggedright\arraybackslash}p{5.5cm}>{\raggedright\arraybackslash}p{5cm}@{}}
 \toprule
-\textbf{Source} & \textbf{Variables} & \textbf{Use in Model} \\
+\textbf{Source} & \textbf{Variables Extracted} & \textbf{Model Application} \\
 \midrule
-O*NET 28.3 & 41 Work Activities, Work Context, 35 Skills & Task weights $w_k$, Physical Protection $P_i$, Capability $V_{s,0}$ \\
-BLS OEWS (2010--24) & Employment levels, wage estimates & Baseline calibration (2010--22), stress test (2023--24) \\
-IPEDS (2015--23) & Program completions by institution & Supply estimation $S(t)$ \\
+\textbf{O*NET} \newline {\scriptsize (v28.3, 2024)}
+  & 41 Work Activities \newline Work Context indicators \newline 35 Skill descriptors
+  & Task weights $w_k$ \newline Physical Protection $P_i$ \newline Initial capability $V_{s,0}$ \\[8pt]
+\textbf{BLS OEWS} \newline {\scriptsize (2010--2024)}
+  & National employment levels \newline Wage percentile estimates
+  & Calibration target (2010--22) \newline Consistency check (2023--24) \\[8pt]
+\textbf{IPEDS} \newline {\scriptsize (2015--2023)}
+  & Program completions \newline Award levels by institution
+  & Educational supply $S(t)$ \newline Enrollment recommendations \\
 \bottomrule
 \end{tabular}
 \end{table}

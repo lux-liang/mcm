@@ -1,41 +1,34 @@
 % ========== 3. Assumptions ==========
 \section{Assumptions and Justifications}
 
-Our model rests on eleven assumptions organized into four categories: \textit{task structure} (A1--A3), governing how occupations decompose into AI-susceptible units; \textit{adoption dynamics} (A4--A6), governing how AI diffuses through workplaces; \textit{labor market} (A7--A9), governing employment and wage responses; and \textit{educational system} (A10--A11), governing institutional adaptation. Each assumption is classified by sensitivity---high-sensitivity assumptions receive dedicated treatment in Section~9 via PRCC analysis.
+Our model rests on eleven assumptions organized into four categories: \textit{task structure} (A1--A3), governing how occupations decompose into AI-susceptible units; \textit{adoption dynamics} (A4--A6), governing how AI diffuses through workplaces; \textit{labor market} (A7--A9), governing employment and wage responses; and \textit{educational system} (A10--A11), governing institutional adaptation.
 
-\begin{table}[H]
+\begin{table}[!htbp]
 \centering
 \caption{Model Assumptions and Justifications}
 \label{tab:assumptions}
-\small
-\setlength{\tabcolsep}{3.5pt}
-\renewcommand{\arraystretch}{0.95}
-\begin{tabular}{>{\raggedright}p{0.22\textwidth}>{\raggedright}p{0.48\textwidth}>{\raggedright\arraybackslash}p{0.18\textwidth}}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{>{\raggedright}p{3.2cm}>{\raggedright}p{7.5cm}>{\raggedright\arraybackslash}p{1.8cm}}
 \toprule
 \textbf{Assumption} & \textbf{Justification} & \textbf{Sensitivity} \\
 \midrule
-\multicolumn{3}{l}{\textit{Task Structure Assumptions}} \\
-\midrule
-A1. Task weights stable & O*NET updated every 2--3 years; descriptors exhibit substantial year-over-year stability for established occupations & Low \\
+\multicolumn{3}{l}{\textit{Task Structure (A1--A3)}} \\[2pt]
+A1. Task weights stable & O*NET updated every 2--3 yrs; substantial year-over-year stability & Low \\
 A2. Tasks independent & Simplification; relaxed in extensions & Medium \\
-A3. Physical tasks resist automation & Hardware limitations, safety regulations & Low \\
-\midrule
-\multicolumn{3}{l}{\textit{Adoption Dynamics Assumptions}} \\
-\midrule
-A4. Logistic adoption with ceiling & Bass diffusion theory \cite{bass1969diffusion}; empirically supported in technology adoption literature & High \\
-A5. Verification bottleneck congestion & Braess paradox analogy; code review \& alert fatigue evidence & Medium \\
-A6. Multi-channel learning & Organizational learning theory \cite{argote2011organizational} & Medium \\
-\midrule
-\multicolumn{3}{l}{\textit{Labor Market Assumptions}} \\
-\midrule
+A3. Physical tasks resist AI & Hardware limitations, safety regulations & Low \\[3pt]
+\multicolumn{3}{l}{\textit{Adoption Dynamics (A4--A6)}} \\[2pt]
+A4. Logistic adoption & Bass diffusion theory~\cite{bass1969diffusion}; empirically supported & High \\
+A5. Verification bottleneck & Braess paradox analogy; code review \& alert fatigue evidence & Medium \\
+A6. Multi-channel learning & Organizational learning theory~\cite{argote2011organizational} & Medium \\[3pt]
+\multicolumn{3}{l}{\textit{Labor Market (A7--A9)}} \\[2pt]
 A7. Short-run supply inelastic & Educational pipeline delays (2--4 years) & Low \\
-A8. Wage adjustments lag employment & Wage stickiness literature & Medium \\
-A9. Firms optimize cost/quality & Microeconomic rationality & Low \\
-\midrule
-\multicolumn{3}{l}{\textit{Educational System Assumptions}} \\
-\midrule
-A10. Curricula modifiable in 1--2 years & Accreditation constraints & Medium \\
-A11. Enrollment responds to signals & Human capital theory & High \\
+A8. Wage adjustments lag & Wage stickiness literature & Medium \\
+A9. Firms optimize cost/quality & Microeconomic rationality & Low \\[3pt]
+\multicolumn{3}{l}{\textit{Educational System (A10--A11)}} \\[2pt]
+A10. Curricula modifiable & Accreditation constraints (1--2 year timeline) & Medium \\
+A11. Enrollment responds & Human capital theory & High \\
 \bottomrule
 \end{tabular}
 \end{table}
