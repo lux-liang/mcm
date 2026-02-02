@@ -107,34 +107,36 @@ We therefore treat GenAI parameters as \textbf{scenario assumptions}:
 \toprule
 \textbf{Parameter} & \textbf{Scenario Value} & \textbf{Range Tested} & \textbf{Basis} \\
 \midrule
-$\kappa_A$ (adoption rate) & $1.5\times$ baseline & $[1.0, 2.5]\times$ & McKinsey AI Survey 2023 \\
-$A_{\text{cap}}$ (ceiling) & Occupation-specific & $\pm 20\%$ & Task exposure analysis \\
-$s_{\text{base}}$ (substitution) & Occupation-specific & $\pm 30\%$ & Expert elicitation \\
+$\kappa_A$ (adoption rate) & $1.5\times$ baseline & $[1.0, 2.5]\times$ & McKinsey 2023~\cite{mckinsey2023ai} \\
+$A_{\text{cap}}$ (ceiling) & Occupation-specific & $\pm 20\%$ & Task exposure (Sec.~5.1) \\
+$s_{\text{base}}$ (substitution) & Occupation-specific & $\pm 30\%$ & Eloundou et al.~\cite{eloundou2023gpts} \\
 \bottomrule
 \end{tabular}
 \end{table}
+\noindent\textit{Note: Ranges represent plausible bounds informed by literature review; no claim of empirical identification is made. All scenario parameters are tested via sensitivity analysis (Sec.~9).}
 
 \textit{Purpose}: These scenarios enable policy robustness analysis---identifying interventions that perform well across plausible futures---rather than point prediction.
 
 \subsubsection{Phase 3: Directional Consistency Check (2023--2024)}
 
-With only two post-GenAI data points, we conduct a \textit{sanity check}: do observed 2023--2024 employment changes fall within model prediction intervals? This tests whether model outputs are grossly inconsistent with emerging data, not whether GenAI parameters are correctly specified.
+With only two post-GenAI data points, we conduct a \textit{sanity check}: do observed employment changes from the pre-GenAI baseline (2022) through 2024 fall within model prediction intervals?
 
 \begin{table}[H]
 \centering
-\caption{Post-GenAI Directional Consistency (2023--2024)}
+\caption{Post-GenAI Consistency: Observed vs.\ Predicted (2022$\to$2024)}
 \label{tab:consistency_check}
 \small
 \begin{tabular}{lcccc}
 \toprule
-\textbf{Occupation} & \textbf{BLS $\Delta$E} & \textbf{Model 90\% CI} & \textbf{Direction} & \textbf{Consistent?} \\
+\textbf{Occupation} & \textbf{BLS $\Delta$E$^\dagger$} & \textbf{Model 90\% CI} & \textbf{Direction} & \textbf{Consistent?} \\
 \midrule
-Information Security & +14.8\% & [+11\%, +22\%] & $\uparrow$ & \checkmark \\
-Electricians & +12.2\% & [+4\%, +15\%] & $\uparrow$ & \checkmark \\
-Graphic Designers & +5.4\% & [$-2$\%, +9\%] & $\uparrow$ & \checkmark \\
+Information Security & +14.8\% & [+11\%, +22\%] & $\uparrow$ & Yes \\
+Electricians & +12.2\% & [+4\%, +15\%] & $\uparrow$ & Yes \\
+Graphic Designers & +5.4\% & [$-2$\%, +9\%] & $\uparrow$ & Yes \\
 \bottomrule
 \end{tabular}
 \end{table}
+\noindent\textit{$^\dagger$BLS $\Delta$E computed as $(E_{2024} - E_{2022})/E_{2022}$: ISA $(187940-163690)/163690$; Elec $(773950-690050)/690050$; GD $(223240-211890)/211890$. Source: Table~\ref{tab:audit_bls}.}
 
 All occupations show directional consistency. Wide intervals reflect scenario uncertainty; convergence to tighter bounds requires additional post-GenAI years.
 
@@ -152,9 +154,9 @@ All occupations show directional consistency. Wide intervals reflect scenario un
 $E(t)$ historical & Observed & BLS OEWS & Calibration target \\
 $\kappa_E$, $\delta_0$, $\varepsilon_D$ & Calibrated & 2010--22 fit & All projections \\
 $\Xi_o$, $P_i$ & Derived & O*NET decomposition & Exposure scores \\
-$A_{\text{cap}}$, $\kappa_A$, $s(t)$ & Assumed (scenario) & Surveys, expert input & Scenario analysis \\
-$A^*$ (tipping point) & Model output & $= 1/(2s)$ & Policy thresholds \\
-$E(t)$ projected & Conditional forecast & If scenarios hold & Recommendations \\
+$A_{\text{cap}}$, $\kappa_A$, $s(t)$ & Assumed & Surveys, expert input & Scenario analysis \\
+$A^*$ (tipping point) & Derived & Eq.~\ref{eq:tipping_point} & Policy thresholds \\
+$E(t)$ projected & Conditional & If assumptions hold & Recommendations \\
 \bottomrule
 \end{tabular}
 \end{table}

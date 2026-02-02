@@ -73,7 +73,7 @@ Graphic Designers show greatest sensitivity to both $A_{\text{cap}}$ and $\varep
 
 \subsection{Parameter Uncertainty}
 
-Monte Carlo simulation (10,000 draws) yields 95\% confidence intervals:
+Monte Carlo simulation ($N = 1{,}000$ LHS draws) yields 95\% confidence intervals:
 
 \begin{table}[H]
 \centering
@@ -93,12 +93,12 @@ Graphic Designers exhibit the widest CI, reflecting uncertainty that could push 
 
 \subsection{Critical Thresholds and Policy Implications}
 
-The sensitivity analysis identifies parameter boundaries beyond which regime transitions occur:
+The sensitivity analysis identifies parameter boundaries beyond which the model predicts regime transitions. These are \textit{model-implied thresholds} conditional on the TECM structure, not empirically observed breakpoints:
 
 \begin{itemize}[noitemsep]
-\item \textbf{Graphic Designers displacement}: sub\_ratio $> 0.60$ OR $\varepsilon_D < 0.25$
-\item \textbf{Electricians digital transformation}: $A_{\text{cap}} > 0.40$
-\item \textbf{Info Security saturation}: $\kappa_A > 0.50$
+\item \textbf{Graphic Designers displacement}: Model predicts net employment decline when sub\_ratio $> 0.60$ OR $\varepsilon_D < 0.25$ (based on parameter sweep across calibrated baseline)
+\item \textbf{Electricians digital transformation}: Physical protection erodes when $A_{\text{cap}} > 0.40$ (contingent on hardware/safety advances)
+\item \textbf{Info Security saturation}: Congestion-induced adoption plateau when $\kappa_A > 0.50$ (exceeds current survey estimates)
 \end{itemize}
 
 The dominance of $A_{\text{cap}}$ (PRCC = 0.95) as the highest-sensitivity parameter carries profound policy implications. Effective intervention should prioritize mechanisms that modulate the \textit{adoption ceiling} rather than attempting to prohibit AI deployment outright. Regulatory approaches might include professional certification requirements for AI-assisted work, quality standards that necessitate human verification, or liability frameworks that incentivize human oversight. Simultaneously, investments in \textit{human verification capacity} ($V_{h,\max}$) offer a complementary lever: expanding cognitive bandwidth through training, workflow optimization, and human-AI interface improvements delays congestion onset and preserves the augmentation regime.
