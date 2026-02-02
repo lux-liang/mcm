@@ -49,6 +49,8 @@ The divergence (+15.8\% vs.\ +0.2\%) despite similar high adoption rates undersc
 \label{fig:congestion}
 \end{figure}
 
+\FloatBarrier
+
 The congestion ratio $\rho(t) = \theta_V A(1 + \gamma_G A) / [V_{h,\max}(1 - \rho_V A)]$ (Eq.~\ref{eq:congestion}) measures the fraction of human verification bandwidth consumed by AI-generated output. When $\rho$ exceeds $\rho_{\text{thresh}} = 0.3$, adoption decelerates as oversight quality degrades. Info Security peaks at $\rho = 0.29$ (month 36), triggering adoption slowdown; Electricians remain below 0.03 (minimal constraint due to low $A_{\text{cap}}$); Graphic Designers reach 0.34 by month 48, reflecting high selection/curation load ($\theta_{\text{sel}}/\theta_V \approx 0.6$). The divergent congestion trajectories imply that verification capacity investment ($V_{h,\max}$) is a more effective policy lever for high-adoption occupations than for physically protected ones.
 
 \subsection{Phase Portrait and Dynamical Regimes}
@@ -59,6 +61,8 @@ The congestion ratio $\rho(t) = \theta_V A(1 + \gamma_G A) / [V_{h,\max}(1 - \rh
 \caption{Phase Portrait: Adoption--Employment Dynamics. Vector fields illustrate trajectory flows; nullclines partition the state space into distinct dynamical regimes.}
 \label{fig:phase_portrait}
 \end{figure}
+
+\FloatBarrier
 
 The phase portrait (Fig.~\ref{fig:phase_portrait}) reveals three basins of attraction: (i) \textit{Augmentation} ($\dot{A} > 0$, $\dot{E} > 0$), (ii) \textit{Transition} ($\dot{A} > 0$, $\dot{E} \approx 0$), and (iii) \textit{Displacement} ($A \to A_{\text{cap}}$, $\dot{E} < 0$). Information Security converges to the Augmentation basin; Electricians remain confined to low-adoption regions; Graphic Designers traverse all three regimes as adoption approaches the 85\% ceiling. The basin structure, not instantaneous parameters, determines long-run equilibria.
 
@@ -99,13 +103,13 @@ GenAI parameters cannot be identified from current data (18-month window, confou
 \toprule
 \textbf{Parameter} & \textbf{Scenario Value} & \textbf{Range Tested} & \textbf{Basis} \\
 \midrule
-$\kappa_A$ (adoption rate) & 1.5$\times$ baseline & [1.0, 2.5]$\times$ & McKinsey 2023~\cite{mckinsey2023ai} \\
+$\kappa_A$ (adoption rate) & factor 1.5 & factor $[1.0, 2.5]$ & McKinsey 2023~\cite{mckinsey2023ai} \\
 $A_{\text{cap}}$ (ceiling) & Occupation-specific & $\pm 20\%$ & Task exposure (Sec.~5.1) \\
 $s_{\text{base}}$ (substitution) & Occupation-specific & $\pm 30\%$ & Eloundou et al.~\cite{eloundou2023gpts} \\
 \bottomrule
 \end{tabular}
 \end{table}
-\noindent\textit{Note: ``$\times$'' denotes multiplicative factor relative to baseline. Ranges represent plausible bounds; no claim of empirical identification is made. All tested via sensitivity analysis (Sec.~9).}
+\noindent\textit{Note: ``factor $k$'' denotes multiplicative scaling relative to baseline (i.e., $k \times$ baseline value). Ranges represent plausible bounds; no claim of empirical identification. All tested via sensitivity analysis (Sec.~9).}
 
 \subsubsection{Phase 3: Directional Consistency Check (2023--2024)}
 

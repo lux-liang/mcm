@@ -25,7 +25,37 @@ Current approaches to AI-employment analysis suffer from three fundamental limit
 
 \subsection{Our Contribution: The TECM Framework}
 
-We develop the \textbf{\fullmodelname{} (\modelname{})} framework with five core innovations: (1) \textbf{task-granular decomposition} disaggregating occupations into weighted task units with distinct AI susceptibility (Sec.~5.2); (2) the \textbf{Verification-Bottleneck Congestion (VBC)} mechanism modeling how finite oversight capacity constrains AI adoption (Sec.~5.3); (3) the \textbf{Physical Protection Index} ($P_i$) quantifying structural resistance to displacement (Sec.~5.2); (4) a \textbf{multi-channel learning model} capturing AI skill acquisition pathways (Sec.~5.4); (5) an \textbf{educational feedback loop} mapping model outputs to institution-specific recommendations (Sec.~7).
+We develop the \textbf{\fullmodelname{} (\modelname{})} framework, which addresses the limitations identified above through four categories of innovation: mechanistic, methodological, uncertainty-aware, and reproducibility-oriented.
+
+\subsubsection{Mechanistic Innovations}
+
+\paragraph{Task-Granular Decomposition.} Rather than treating occupations as monolithic units, we decompose each occupation $o$ into $K$ weighted task units $\{(\tau_k, w_k, \xi_k, p_k)\}_{k=1}^K$, where $w_k$ denotes importance weight, $\xi_k \in [0,1]$ quantifies AI exposure, and $p_k \in \{0,1\}$ flags physical task requirements. This decomposition enables within-occupation heterogeneity analysis and yields the \textbf{Composite Exposure Index} ($\Xi_o = \sum_k w_k \cdot \xi_k \cdot (1 - \alpha_p \cdot p_k)$) and \textbf{Physical Protection Index} ($P_i$), which quantifies structural resistance to AI displacement arising from irreducible physical task components.
+
+\paragraph{Verification-Bottleneck Congestion (VBC).} A key mechanistic insight is that AI-generated outputs require human oversight---verification for accuracy, selection among alternatives, and quality curation. As adoption $A(t)$ increases, verification demand grows superlinearly (due to combinatorial selection and consistency-checking overhead), eventually exceeding finite human bandwidth $V_{h,\max}$. This creates a \textit{congestion ratio} $\rho(t)$ that, when exceeding threshold $\rho_{\text{thresh}}$, decelerates further adoption and degrades output quality. The VBC mechanism explains why naive productivity projections systematically overestimate displacement timelines: high adoption paradoxically inverts its own benefits.
+
+\paragraph{Tipping Point Derivation.} The coupled dynamics of adoption and employment yield an analytically tractable \textit{tipping point} $A^* = 1/(2s)$, where $s$ is the effective substitution ratio. Below $A^*$, AI augments employment ($dE/dt > 0$); above $A^*$, displacement dominates ($dE/dt < 0$). Crucially, $A^*$ is endogenous: workforce capability $V_s$ reduces effective substitution, shifting $A^*$ rightward---this creates the theoretical foundation for educational intervention.
+
+\subsubsection{Methodological Innovations}
+
+\paragraph{Three-Phase Epistemic Pipeline.} We explicitly partition the modeling workflow into phases with distinct epistemic status:
+\begin{itemize}[noitemsep]
+\item \textbf{Phase 1: Structural Calibration (2010--2022).} Pre-GenAI employment data identifies baseline parameters ($\kappa_E$, $\delta_0$, $\varepsilon_D$) governing labor market dynamics independent of specific automation technology. These parameters are \textit{empirically calibrated} (MAPE $<7\%$).
+\item \textbf{Phase 2: Scenario Injection (2023+).} GenAI-specific parameters ($A_{\text{cap}}$, $\kappa_A$, $s_{\text{base}}$) cannot be identified from the 18-month post-ChatGPT window due to adoption lags and macroeconomic confounders. We treat these as \textit{scenario assumptions} informed by surveys and expert judgment, explicitly documented as such.
+\item \textbf{Phase 3: Directional Consistency Check (2023--2024).} With limited post-GenAI data, we conduct sanity checks: do observed employment changes fall within model prediction intervals? This provides weak validation without overstating identification strength.
+\end{itemize}
+This pipeline prevents the common error of conflating calibrated structural relationships with assumed scenario parameters.
+
+\subsubsection{Uncertainty and Decision Support Innovations}
+
+\paragraph{Global Sensitivity via PRCC.} Rather than single-scenario projections, we employ Partial Rank Correlation Coefficient (PRCC) analysis with Latin Hypercube Sampling ($N = 1{,}000$ draws across 8 parameters) to identify which model inputs most strongly drive outputs. This reveals that $A_{\text{cap}}$ (PRCC = 0.95 for adoption outcomes) and $s_{\text{base}}$ (PRCC = $-0.82$ for employment outcomes) dominate, while baseline parameters ($p_{\text{base}}$, $\delta_0$) have negligible influence given AI-driven dynamics dominance.
+
+\paragraph{Policy Lever Identification.} The sensitivity structure directly informs policy: interventions targeting adoption ceiling modulation (certification requirements, quality standards, liability frameworks) dominate blunt instruments (technology bans, automation taxes). Educational investments in verification capacity ($V_{h,\max}$) and workforce capability ($V_s$) offer complementary levers with quantifiable tipping-point shift effects.
+
+\subsubsection{Reproducibility Innovations}
+
+\paragraph{Data Audit Trail.} All empirical quantities are documented with explicit provenance: SOC/CIP codes, UnitIDs, extraction dates, and local file references. Anchor-year tables (2010, 2012, 2018, 2022, 2024 for BLS; 2020--2023 for IPEDS) enable independent verification without requiring full time-series reproduction. A corrections log documents all revisions from initial estimates to verified values.
+
+\paragraph{Epistemic Classification.} Every model quantity is classified by epistemic status: \textit{Observed} (BLS employment), \textit{Calibrated} (structural parameters fitted to 2010--2022), \textit{Derived} (exposure indices from O*NET decomposition), \textit{Assumed} (GenAI scenario parameters), or \textit{Conditional} (projected employment under stated assumptions). This prevents misinterpretation of scenario-conditional projections as unconditional predictions.
 
 \subsection{Selected Occupations and Institutions}
 

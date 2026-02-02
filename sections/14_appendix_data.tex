@@ -8,6 +8,7 @@ This appendix documents the provenance of all empirical quantities. Full annual 
 
 \begin{table}[H]
 \centering
+\begin{threeparttable}
 \caption{BLS OEWS Employment -- Anchor Years}
 \label{tab:audit_bls}
 \small
@@ -16,20 +17,25 @@ This appendix documents the provenance of all empirical quantities. Full annual 
 \toprule
 \textbf{Year} & \textbf{ISA (15-1212)} & \textbf{Elec (47-2111)} & \textbf{GD (27-1024)} \\
 \midrule
-2010 & ---$^\dagger$ & 514,760 & 192,240 \\
+2010 & ---\tnote{a} & 514,760 & 192,240 \\
 2012 & 72,670 & 519,850 & 191,440 \\
 2018 & 108,060 & 655,840 & 217,810 \\
 2022 & 163,690 & 690,050 & 211,890 \\
 2024 & 187,940 & 773,950 & 223,240 \\
 \bottomrule
 \end{tabular}
+\begin{tablenotes}[flushleft]\footnotesize
+\item[a] SOC 15-1212 introduced in SOC-2010 revision; consistent series from 2012.
+\item Source: BLS OEWS National May estimates. Extraction: Jan 2025. Local file: \texttt{oews\_target\_soc\_2010\_2024.csv}.
+\end{tablenotes}
+\end{threeparttable}
 \end{table}
-\noindent\textit{$^\dagger$SOC 15-1212 introduced in SOC-2010 revision; consistent series from 2012. Source: BLS OEWS National May estimates (\url{https://www.bls.gov/oes/tables.htm}). Extraction: Jan 2025. Local: \texttt{oews\_target\_soc\_2010\_2024.csv}. Intervening years follow monotonic trends except 2020 (COVID dip); full series reproducible from source file.}
 
 \subsection{IPEDS Completions Data}
 
 \begin{table}[H]
 \centering
+\begin{threeparttable}
 \caption{IPEDS Program Completions -- Recent Years}
 \label{tab:audit_ipeds}
 \small
@@ -40,11 +46,15 @@ This appendix documents the provenance of all empirical quantities. Full annual 
 \midrule
 CMU (211440) & 11.1003 / Master's & 92 & 79 & 70 & 143 \\
 Lansing CC (170657) & 46.0302 / Cert+Assoc & 28 & 16 & 17 & 32 \\
-RISD (217493) & 50.0409 / Bach+Master's & 61 & 61 & --- & --- \\
+RISD (217493) & 50.0409 / Bach+Master's & 61 & 61 & ---\tnote{b} & ---\tnote{b} \\
 \bottomrule
 \end{tabular}
+\begin{tablenotes}[flushleft]\footnotesize
+\item[b] Not available in IPEDS Data Center public release at time of extraction.
+\item Source: IPEDS Completions Survey. Award codes: 2=Cert 1--2yr, 3=Assoc, 5=Bach, 7=Master's. Local file: \texttt{ipeds\_completions\_real\_targets\_2015\_2023.csv}.
+\end{tablenotes}
+\end{threeparttable}
 \end{table}
-\noindent\textit{Source: IPEDS Completions Survey (\url{https://nces.ed.gov/ipeds/datacenter/}). Award codes: 2=Cert 1--2yr, 3=Assoc, 5=Bach, 7=Master's, 21=Post-bacc cert. RISD 2022--23 unavailable at extraction. Local: \texttt{ipeds\_completions\_real\_targets\_2015\_2023.csv}.}
 
 \subsection{Corrections Log}
 
@@ -59,20 +69,25 @@ RISD (217493) & 50.0409 / Bach+Master's & 61 & 61 & --- & --- \\
 
 \begin{table}[H]
 \centering
+\begin{threeparttable}
 \caption{Parameter Epistemic Status}
 \label{tab:audit_params}
 \small
 \setlength{\tabcolsep}{3.5pt}
-\begin{tabular}{>{\raggedright}p{2cm}>{\raggedright}p{1.8cm}>{\raggedright}p{2.8cm}>{\raggedright\arraybackslash}p{4cm}}
+\begin{tabular}{>{\raggedright}p{2cm}>{\raggedright}p{1.8cm}>{\raggedright}p{2.5cm}>{\raggedright\arraybackslash}p{4cm}}
 \toprule
-\textbf{Parameter} & \textbf{Status} & \textbf{Calibration Target} & \textbf{Sensitivity Range} \\
+\textbf{Parameter} & \textbf{Status} & \makecell[l]{\textbf{Calibration}\\\textbf{Target}} & \textbf{Sensitivity Range} \\
 \midrule
 $\kappa_E$, $\delta_0$ & Calibrated & E(t) 2010--22 & Fixed post-calibration \\
 $\varepsilon_D$ & Calibrated & E(t) 2010--22 & $\pm 40\%$ tested \\
-$A_{\text{cap}}$, $\kappa_A$ & Assumed & --- & $\pm 20\%$, $[1.0, 2.5]\times$ \\
+$A_{\text{cap}}$, $\kappa_A$ & Assumed & --- & $\pm 20\%$; factor $[1.0, 2.5]$\tnote{c} \\
 $s_{\text{base}}$ & Assumed & --- & $\pm 30\%$ tested \\
-$P_i$, $\Xi_o$ & Derived & O*NET decomposition & Not varied \\
+$P_i$, $\Xi_o$ & Derived & O*NET decomp. & Not varied \\
 \bottomrule
 \end{tabular}
+\begin{tablenotes}[flushleft]\footnotesize
+\item[c] Multiplicative factor relative to baseline; e.g., ``factor 1.5'' means $1.5 \times$ baseline value.
+\item Calibrated: fitted to 2010--2022 BLS data. Assumed: set via expert judgment; tested in sensitivity analysis. Derived: deterministic from O*NET task weights.
+\end{tablenotes}
+\end{threeparttable}
 \end{table}
-\noindent\textit{Calibrated: fitted to 2010--2022 BLS data. Assumed: set via expert judgment; tested in sensitivity analysis. Derived: deterministic from O*NET.}

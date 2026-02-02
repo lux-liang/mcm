@@ -51,6 +51,7 @@ Graphic Design & Completions & IPEDS & CIP 50.0409, UnitID 217493 & 2015--21 & A
 
 \begin{table}[H]
 \centering
+\begin{threeparttable}
 \caption{Historical Employment Data (BLS OEWS)}
 \label{tab:bls_data}
 \small
@@ -58,18 +59,22 @@ Graphic Design & Completions & IPEDS & CIP 50.0409, UnitID 217493 & 2015--21 & A
 \toprule
 \textbf{SOC} & \textbf{Occupation} & \textbf{E(2010)} & \textbf{E(2022)} & \textbf{E(2024)} & \textbf{CAGR$_{10-24}$} \\
 \midrule
-15-1212 & Info Security Analysts & 72,670$^\dagger$ & 163,690 & 187,940 & 7.9\% \\
+15-1212 & Info Security Analysts & 72,670\tnote{a} & 163,690 & 187,940 & 7.9\% \\
 47-2111 & Electricians & 514,760 & 690,050 & 773,950 & 2.9\% \\
 27-1024 & Graphic Designers & 192,240 & 211,890 & 223,240 & 1.1\% \\
 \bottomrule
 \end{tabular}
+\begin{tablenotes}[flushleft]\footnotesize
+\item[a] SOC 15-1212 series begins 2012; value shown is earliest available. E(2022) serves as pre-GenAI baseline for scenario injection. Source: \texttt{oews\_target\_soc\_2010\_2024.csv}.
+\end{tablenotes}
+\end{threeparttable}
 \end{table}
-\noindent\textit{$^\dagger$SOC 15-1212 series begins 2012; value shown is earliest available. E(2022) serves as pre-GenAI baseline for scenario injection. Source file: \texttt{oews\_target\_soc\_2010\_2024.csv}.}
 
 \subsection{Institutional Data}
 
 \begin{table}[H]
 \centering
+\begin{threeparttable}
 \caption{Partner Institution Program Completions (IPEDS)}
 \label{tab:ipeds_data}
 \small
@@ -79,11 +84,14 @@ Graphic Design & Completions & IPEDS & CIP 50.0409, UnitID 217493 & 2015--21 & A
 \midrule
 Carnegie Mellon & 11.1003 & Info Security & 2023 & 143 & Master's \\
 Lansing CC & 46.0302 & Electrician & 2023 & 32 & Cert/Assoc \\
-RISD & 50.0409 & Graphic Design & 2021$^\ddagger$ & 61 & Bach/Master's \\
+RISD & 50.0409 & Graphic Design & 2021\tnote{b} & 61 & Bach/Master's \\
 \bottomrule
 \end{tabular}
+\begin{tablenotes}[flushleft]\footnotesize
+\item[b] RISD 2022--2023 data not available in IPEDS public release at time of analysis; 2021 reported with uncertainty. Source: \texttt{ipeds\_completions\_real\_targets\_2015\_2023.csv}.
+\end{tablenotes}
+\end{threeparttable}
 \end{table}
-\noindent\textit{$^\ddagger$RISD 2022--2023 data not available in IPEDS public release at time of analysis; 2021 reported with uncertainty. Source file: \texttt{ipeds\_completions\_real\_targets\_2015\_2023.csv}.}
 
 \subsection{Preprocessing}
 
